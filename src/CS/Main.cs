@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows;
 using CefSharp.Wpf;
+using Newtonsoft.Json;
+using System.IO;
 using static NoteOverride;
 
 
@@ -94,5 +97,11 @@ public static class Main
     public static string GetModuleNameByURL(string URL)
     {
         return URL.Replace("http:ktane.timwi.de","https://ktane.timwi.de").Replace("https://ktane.timwi.de/HTML/", "").Replace("https://ktane.timwi.de/PDF/", "").Replace("%20", " ").Replace(".html","").Replace(".pdf","");
+    }
+
+    public static void StartBot(string Channel)
+    {
+        Dictionary<string, string> UserData = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(DataPath));
+        Bot bot = new Bot(UserData["Username"],UserData["OAuthToken"], Channel);
     }
 }

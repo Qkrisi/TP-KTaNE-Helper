@@ -189,3 +189,13 @@ D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Client.dll
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Client.Enums.dll
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Client.Models.dll
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Communication.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Core.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Core.Enums.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Core.Interfaces.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Core.Models.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Helix.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.Helix.Models.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.V5.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.V5.Models.dll
+D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.PubSub.dll

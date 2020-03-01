@@ -24,6 +24,7 @@ namespace TPKtaneHelper
             Main.Notes = Notes;
             Main.RepoButton.Click += RepoButtonClick;
             Reset.Click += ResetButtonClick;
+            Main.StartBot("derfer99");
             if(_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
         }
 
