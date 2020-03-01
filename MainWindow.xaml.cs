@@ -15,7 +15,7 @@ namespace TPKtaneHelper
     {
         private static readonly bool _DeveloperMode = false;
 
-        public MainWindow()
+        public MainWindow(string channel)
         {
             InitializeComponent();
             Repository.LoadingStateChanged += OnLoad;
@@ -24,7 +24,8 @@ namespace TPKtaneHelper
             Main.Notes = Notes;
             Main.RepoButton.Click += RepoButtonClick;
             Reset.Click += ResetButtonClick;
-            Main.StartBot("derfer99");
+            Main.StartBot(channel);
+            Chat.Address = $"localhost:5000/chat/{channel}";
             if(_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
         }
 
