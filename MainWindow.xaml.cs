@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Runtime.CompilerServices;
 using System.Reflection;
 using System.IO;
@@ -13,7 +14,7 @@ namespace TPKtaneHelper
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly bool _DeveloperMode = false;
+        private static readonly bool _DeveloperMode = true;
 
         public MainWindow(string channel)
         {
@@ -24,12 +25,22 @@ namespace TPKtaneHelper
             Main.Notes = Notes;
             Main.RepoButton.Click += RepoButtonClick;
             Reset.Click += ResetButtonClick;
-            Main.StartBot(channel);
+            Main.StartBot(channel, !_DeveloperMode);
+            Back.Click += BackClick;
             Chat.Address = $"localhost:5000/chat/{channel}";
-            if(_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
+            Tab1.Click += TabClick;
+            Tab2.Click += TabClick;
+            Tab3.Click += TabClick;
+            Tab4.Click += TabClick;
+            Tab5.Click += TabClick;
+            if (_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
         }
 
-        private static void OnLoad(object sender, LoadingStateChangedEventArgs a)
+        private static void BackClick(object sender, RoutedEventArgs e)
+        {
+            Main.currentTab.GoBack();
+        }
+        private static void OnLoad(object sender, LoadingStateChangedEventArgs e)
         {
             Main.CangeText();
         }
@@ -44,9 +55,10 @@ namespace TPKtaneHelper
             Main.ResetClick();
         }
 
-        private void Tab1_Click(object sender, RoutedEventArgs e)
+        private void TabClick(object sender, RoutedEventArgs e)
         {
-
+            Button btn = sender as Button;
+            Main.ChangeTab(int.Parse(btn.Name.Replace("Tab", ""))-1);
         }
     }
 

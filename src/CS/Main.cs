@@ -15,10 +15,15 @@ public static class Main
     public static TextBox Notes;
     public static string _module = "https://ktane.timwi.de/";
 
+    private static Tab[] Tabs = new Tab[5] { new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module) };
+    private static int tabNum = 0;
+    public static Tab currentTab => Tabs[tabNum];
+
     private static readonly string DataPath = @"../../../UserData.json";
 
     public static void CangeText()
     {
+        currentTab.ChangeAddress(GetAddress());
         SaveNotes();
         _module = GetModuleNameByURL(GetAddress());
         LoadNotes();
@@ -40,6 +45,12 @@ public static class Main
         return temp;
     }
     #endregion
+
+    public static void ChangeTab(int num)
+    {
+        tabNum = num;
+        Application.Current.Dispatcher.Invoke(() => { Repository.Address = currentTab.Address; });
+    }
 
     #region Notes
     private static void SaveNotes()
@@ -99,9 +110,9 @@ public static class Main
         return URL.Replace("http:ktane.timwi.de","https://ktane.timwi.de").Replace("https://ktane.timwi.de/HTML/", "").Replace("https://ktane.timwi.de/PDF/", "").Replace("%20", " ").Replace(".html","").Replace(".pdf","");
     }
 
-    public static void StartBot(string Channel)
+    public static void StartBot(string Channel, bool announce)
     {
         Dictionary<string, string> UserData = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(DataPath));
-        Bot bot = new Bot(UserData["Username"],UserData["OAuthToken"], Channel);
+        Bot bot = new Bot(UserData["Username"], UserData["OAuthToken"], Channel, announce);
     }
 }

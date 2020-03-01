@@ -2,16 +2,16 @@ from flask import Flask, request
 
 app = Flask('TP:KTaNE Helper')
 
-@app.route('/video')
-def Video():
-	return """
+@app.route('/video/<channel>')
+def Video(channel):
+	return f"""
 	<html>
 	<head>
 	<title>Twitch Viewer</title>
 	</head>
 	<body>
 	<iframe
-		src="https://player.twitch.tv/?channel=derfer99"
+		src="https://player.twitch.tv/?channel={channel}"
 		height="1000"
 		width="1000"
 	>
