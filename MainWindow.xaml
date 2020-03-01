@@ -1,0 +1,87 @@
+﻿<Window x:Class="TPKtaneHelper.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TPKtaneHelper"
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <wpf:ChromiumWebBrowser x:Name="Chat" Address="http://localhost:5000/chat" Margin="1362,560,-827,-282"/>
+        <wpf:ChromiumWebBrowser x:Name="Calculator" Address="http://files.timwi.de/Tools/Calculator.html" Margin="1403,15,-854,142"/>
+        <wpf:ChromiumWebBrowser x:Name="Repository" Address="http:ktane.timwi.de" Margin="0,33,535,279"/>
+        <TextBox HorizontalAlignment="Left" Margin="0,684,0,0" x:Name="Notes" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="1362" Height="296" AcceptsReturn="True" AcceptsTab="True"/>
+        <Button Content="Repo" x:Name="Repo" HorizontalAlignment="Left" Height="31" Margin="1797,563,0,0" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Reset Notes" x:Name="Reset" HorizontalAlignment="Left" Height="31" Margin="1797,607,0,0" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Tab1" x:Name="Tab1" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Tab2" x:Name="Tab2" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.5,0.5" Margin="42,0,0,0">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Tab3" x:Name="Tab3" HorizontalAlignment="Left" Height="31" VerticalAlignment="Bottom" Width="36" RenderTransformOrigin="0.5,0.5" Margin="84,0,0,945">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Tab4" x:Name="Tab4" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.5,0.5" Margin="132,0,0,0">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Tab5" x:Name="Tab5" HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="37" RenderTransformOrigin="0.5,0.5" Margin="175,0,0,0">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+    </Grid>
+</Window>

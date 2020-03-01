@@ -1,0 +1,168 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "cef.redist.x64/79.1.36": {},
+      "cef.redist.x86/79.1.36": {},
+      "CefSharp.Common/79.1.360": {
+        "dependencies": {
+          "cef.redist.x64": "79.1.36",
+          "cef.redist.x86": "79.1.36"
+        }
+      },
+      "CefSharp.Wpf/79.1.360": {
+        "dependencies": {
+          "CefSharp.Common": "79.1.360"
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions/2.1.1": {
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.18157"
+          }
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
+      "TwitchLib.Client/3.1.4": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "2.1.1",
+          "TwitchLib.Client.Enums": "3.1.4",
+          "TwitchLib.Client.Models": "3.1.4",
+          "TwitchLib.Communication": "1.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/TwitchLib.Client.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.1.4.0"
+          }
+        }
+      },
+      "TwitchLib.Client.Enums/3.1.4": {
+        "runtime": {
+          "lib/netstandard2.0/TwitchLib.Client.Enums.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.1.4.0"
+          }
+        }
+      },
+      "TwitchLib.Client.Models/3.1.4": {
+        "dependencies": {
+          "TwitchLib.Client.Enums": "3.1.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/TwitchLib.Client.Models.dll": {
+            "assemblyVersion": "3.1.4.0",
+            "fileVersion": "3.1.4.0"
+          }
+        }
+      },
+      "TwitchLib.Communication/1.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/TwitchLib.Communication.dll": {
+            "assemblyVersion": "1.0.3.0",
+            "fileVersion": "1.0.3.0"
+          }
+        }
+      },
+      "WebSocketSharp-NonPreRelease/1.0.0": {
+        "runtime": {
+          "lib/net35/websocket-sharp.dll": {
+            "assemblyVersion": "1.0.2.32519",
+            "fileVersion": "1.0.2.32519"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "cef.redist.x64/79.1.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BAkFrlP3DTEsf9GaH9RUAgK7EhdvwViBdakE2YolJS1Xsg6/e8UJ5xhpTHJ0IZV+EG+N5MPLG5iGoYFmIC0NdQ==",
+      "path": "cef.redist.x64/79.1.36",
+      "hashPath": "cef.redist.x64.79.1.36.nupkg.sha512"
+    },
+    "cef.redist.x86/79.1.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8nKwmwWEMx4QPmxOn50qLNYnfVV7QSy4p4yL/ZkBEfjwCP+heUHjtPvq79ZLkBUZSlSrt6amll2xqGccctKjSA==",
+      "path": "cef.redist.x86/79.1.36",
+      "hashPath": "cef.redist.x86.79.1.36.nupkg.sha512"
+    },
+    "CefSharp.Common/79.1.360": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-557XvPIHixQ4ipPHhGsTeCMtm8kbNICT2dRoYyjTiHkQo7jPOKJN69JmxLL8H0gWGV2SLlOv5ChzRD9rAJEf4w==",
+      "path": "cefsharp.common/79.1.360",
+      "hashPath": "cefsharp.common.79.1.360.nupkg.sha512"
+    },
+    "CefSharp.Wpf/79.1.360": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K4shUXhU8toNl0YzEbOcNo9S4GFIAV7ppCvj/pBkpuIpgf1j8FRyX8ZCCKv/XQrkNL5Fe33J43JCgN2PREVu5w==",
+      "path": "cefsharp.wpf/79.1.360",
+      "hashPath": "cefsharp.wpf.79.1.360.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Abstractions/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QWFWKrdeoDSEr8nVJaBAVDMj24wnh9clGzDNmMdgHHRsOIwTUMeh4XljeZXJhIKPT00jWuzwEzn3uNxOtO4cYg==",
+      "path": "microsoft.extensions.logging.abstractions/2.1.1",
+      "hashPath": "microsoft.extensions.logging.abstractions.2.1.1.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
+    "TwitchLib.Client/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-egNCZEAu0w3BTF0X29SY7andT2K5IxFp3vDAOrvHIk3OaceXMcGOy3wznfuGshFDW37HdirpUEKw7vrWqyezbQ==",
+      "path": "twitchlib.client/3.1.4",
+      "hashPath": "twitchlib.client.3.1.4.nupkg.sha512"
+    },
+    "TwitchLib.Client.Enums/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TxItwSS64opA90kc5cPKdfNl/AC1YkkKJgbPux5Xsq/xKgDSCmHv9K2kficWOhbxu4X2f1AvcZZXJS7rIe24WQ==",
+      "path": "twitchlib.client.enums/3.1.4",
+      "hashPath": "twitchlib.client.enums.3.1.4.nupkg.sha512"
+    },
+    "TwitchLib.Client.Models/3.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zg6GKfdG4grdvg3MfWMWYLBklc7z+SRF/Pb5Go8cQ6svlXWEblZKTC84id7dICkzo7AQvTxwJ35Fx01lRAJjTA==",
+      "path": "twitchlib.client.models/3.1.4",
+      "hashPath": "twitchlib.client.models.3.1.4.nupkg.sha512"
+    },
+    "TwitchLib.Communication/1.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ale1+XKfSQgCBRKQQOWjvpFlx/7Ji/uoaIpOx6QIJ3NvsfzUy5/edeFWEFftqbQegLSUCK8zVSLKOmdsHJ8bYw==",
+      "path": "twitchlib.communication/1.0.3",
+      "hashPath": "twitchlib.communication.1.0.3.nupkg.sha512"
+    },
+    "WebSocketSharp-NonPreRelease/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-O1TLFp8hwgVFEI0bjAGLAdsGwtT+yggdRYAlOSw+ZCtwHVc5LmUBU52H+KgG37med9e11lsxmlNzzlF6/hW+Bg==",
+      "path": "websocketsharp-nonprerelease/1.0.0",
+      "hashPath": "websocketsharp-nonprerelease.1.0.0.nupkg.sha512"
+    }
+  }
+}

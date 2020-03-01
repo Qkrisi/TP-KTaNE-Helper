@@ -1,0 +1,54 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "cef.redist.x64/79.1.36": {},
+      "cef.redist.x86/79.1.36": {},
+      "CefSharp.Common/79.1.360": {
+        "dependencies": {
+          "cef.redist.x64": "79.1.36",
+          "cef.redist.x86": "79.1.36"
+        }
+      },
+      "CefSharp.Wpf/79.1.360": {
+        "dependencies": {
+          "CefSharp.Common": "79.1.360"
+        }
+      }
+    }
+  },
+  "libraries": {
+    "cef.redist.x64/79.1.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BAkFrlP3DTEsf9GaH9RUAgK7EhdvwViBdakE2YolJS1Xsg6/e8UJ5xhpTHJ0IZV+EG+N5MPLG5iGoYFmIC0NdQ==",
+      "path": "cef.redist.x64/79.1.36",
+      "hashPath": "cef.redist.x64.79.1.36.nupkg.sha512"
+    },
+    "cef.redist.x86/79.1.36": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8nKwmwWEMx4QPmxOn50qLNYnfVV7QSy4p4yL/ZkBEfjwCP+heUHjtPvq79ZLkBUZSlSrt6amll2xqGccctKjSA==",
+      "path": "cef.redist.x86/79.1.36",
+      "hashPath": "cef.redist.x86.79.1.36.nupkg.sha512"
+    },
+    "CefSharp.Common/79.1.360": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-557XvPIHixQ4ipPHhGsTeCMtm8kbNICT2dRoYyjTiHkQo7jPOKJN69JmxLL8H0gWGV2SLlOv5ChzRD9rAJEf4w==",
+      "path": "cefsharp.common/79.1.360",
+      "hashPath": "cefsharp.common.79.1.360.nupkg.sha512"
+    },
+    "CefSharp.Wpf/79.1.360": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K4shUXhU8toNl0YzEbOcNo9S4GFIAV7ppCvj/pBkpuIpgf1j8FRyX8ZCCKv/XQrkNL5Fe33J43JCgN2PREVu5w==",
+      "path": "cefsharp.wpf/79.1.360",
+      "hashPath": "cefsharp.wpf.79.1.360.nupkg.sha512"
+    }
+  }
+}

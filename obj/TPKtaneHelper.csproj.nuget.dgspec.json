@@ -1,0 +1,84 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj": {}
+  },
+  "projects": {
+    "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj",
+        "projectName": "TPKtaneHelper",
+        "projectPath": "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj",
+        "packagesPath": "C:\\Users\\qkris\\.nuget\\packages\\",
+        "outputPath": "D:\\CSProjects\\TPKtaneHelper\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\qkris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "CefSharp.Wpf": {
+              "target": "Package",
+              "version": "[79.1.360, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "TwitchLib.Client": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "WebSocketSharp-NonPreRelease": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
