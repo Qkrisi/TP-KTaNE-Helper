@@ -5,7 +5,7 @@ using TwitchLib.Communication.Clients;
 using TwitchLib.Client.Models;
 using TwitchLib.Communication.Models;
 
-class Bot
+public class Bot
 {
     TwitchClient client;
     string Channel;

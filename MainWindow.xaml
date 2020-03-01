@@ -33,6 +33,16 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
+        <Button Content="Select other streamer" x:Name="StreamerSelect" HorizontalAlignment="Left" Height="31" Margin="1793,607,0,0" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
         <Button Content="Go back" x:Name="Back" HorizontalAlignment="Left" Height="31" Margin="217,0,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>

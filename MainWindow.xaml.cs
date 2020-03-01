@@ -33,6 +33,7 @@ namespace TPKtaneHelper
             Tab3.Click += TabClick;
             Tab4.Click += TabClick;
             Tab5.Click += TabClick;
+            StreamerSelect.Click += StreamerSelectClick;
             if (_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
         }
 
@@ -59,6 +60,14 @@ namespace TPKtaneHelper
         {
             Button btn = sender as Button;
             Main.ChangeTab(int.Parse(btn.Name.Replace("Tab", ""))-1);
+        }
+
+        private void StreamerSelectClick(object sender, RoutedEventArgs e)
+        {
+            Main.bot.End();
+            Start p = new Start();
+            p.Show();
+            Close();
         }
     }
 

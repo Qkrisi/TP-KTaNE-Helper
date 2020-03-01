@@ -15,6 +15,8 @@ public static class Main
     public static TextBox Notes;
     public static string _module = "https://ktane.timwi.de/";
 
+    public static Bot bot = null;
+
     private static Tab[] Tabs = new Tab[5] { new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module) };
     private static int tabNum = 0;
     public static Tab currentTab => Tabs[tabNum];
@@ -100,6 +102,7 @@ public static class Main
             {
                 Notes.Text = $"{(_module == "https://ktane.timwi.de" ? "" : $"{_module}\n\n")}";
             }
+            if (Notes.Text == "https://ktane.timwi.de/\n\n") Notes.Text = "";
             SaveNotes();
         });
     }
@@ -113,6 +116,6 @@ public static class Main
     public static void StartBot(string Channel, bool announce)
     {
         Dictionary<string, string> UserData = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(DataPath));
-        Bot bot = new Bot(UserData["Username"], UserData["OAuthToken"], Channel, announce);
+        bot = new Bot(UserData["Username"], UserData["OAuthToken"], Channel, announce);
     }
 }
