@@ -110,7 +110,7 @@ public static class Main
 
     public static string GetModuleNameByURL(string URL)
     {
-        return URL.Replace("http:ktane.timwi.de","https://ktane.timwi.de").Replace("https://ktane.timwi.de/HTML/", "").Replace("https://ktane.timwi.de/PDF/", "").Replace("%20", " ").Replace(".html","").Replace(".pdf","");
+        return URL.Replace("http:ktane.timwi.de","https://ktane.timwi.de").Replace("http://ktane.timwi.de","https://ktane.timwi.de").Replace("https://ktane.timwi.de/HTML/", "").Replace("https://ktane.timwi.de/PDF/", "").Replace("%20", " ").Replace(".html","").Replace(".pdf","");
     }
 
     public static void StartBot(string Channel, bool announce)

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 D:\CSProjects\TPKtaneHelper\App.xaml
-22131412466
+5-1464886391
 
-8-660975855
+16193458954
 212-341987863
-MainWindow.xaml;Start.xaml;
+MainWindow.xaml;src\CS\GUI\ComposeWindow.xaml;src\CS\GUI\ModuleChooser.xaml;src\CS\GUI\ModuleWindow.xaml;Start.xaml;
 
 False
 

@@ -6,6 +6,7 @@ using System.Reflection;
 using System.IO;
 using CefSharp.Wpf;
 using CefSharp;
+using TPKtaneHelper.src.CS.GUI;
 
 namespace TPKtaneHelper
 {
@@ -34,6 +35,7 @@ namespace TPKtaneHelper
             Tab4.Click += TabClick;
             Tab5.Click += TabClick;
             StreamerSelect.Click += StreamerSelectClick;
+            Composer.Click += ComposeMessage;
             if (_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
         }
 
@@ -68,6 +70,12 @@ namespace TPKtaneHelper
             Start p = new Start();
             p.Show();
             Close();
+        }
+
+        private void ComposeMessage(object sender, RoutedEventArgs e)
+        {
+            ComposeWindow p = new ComposeWindow();
+            p.Show();
         }
     }
 

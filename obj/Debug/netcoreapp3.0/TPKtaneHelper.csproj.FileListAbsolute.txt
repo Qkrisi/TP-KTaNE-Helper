@@ -201,3 +201,9 @@ D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.Api.V5.Models.dll
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\TwitchLib.PubSub.dll
 D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\Start.g.cs
 D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\Start.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ModuleChooser.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ModuleWindow.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ModuleWindow.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ModuleChooser.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ComposeWindow.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\GUI\ComposeWindow.baml
