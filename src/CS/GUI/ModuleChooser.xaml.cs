@@ -21,16 +21,9 @@ namespace TPKtaneHelper.src.CS.GUI
                 {
                     StackPanel Panel = new StackPanel();
                     Panel.Orientation = Orientation.Horizontal;
-                    var image = new Image();
-                    var fullFilePath = $@"https://ktane.timwi.de/icons/{Pair.Key.Replace(" ", "%20")}.png";
+                    var fullFilePath = @$"https://ktane.timwi.de/icons/{Pair.Key.Replace(" ","%20")}.png";
 
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                    bitmap.EndInit();
-
-                    image.Source = bitmap;
-                    Panel.Children.Add(image);
+                    Panel.Children.Add(new GuiImage(ImageSource.URL, fullFilePath).GuiElement);
 
                     Button BTN = new Button();
                     BTN.Name = Pair.Key;

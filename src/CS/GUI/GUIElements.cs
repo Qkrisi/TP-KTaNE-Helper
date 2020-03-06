@@ -1,22 +1,51 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 public class GuiElement { }
 public class GuiRow : GuiElement { }
 
-public class FinalElement
+public enum ImageSource
 {
-    public GuiButton finalButton = null;
+    URL,
+    File
+}
 
-    public FinalElement(GuiElement Element, string eType)
+public class GuiBackgroundImage
+{
+    public ImageBrush img { get; private set; }
+    public GuiBackgroundImage(ImageSource imageType, string source)
     {
-        switch(eType)
-        {
-            case "Button":
-                finalButton = Element as GuiButton;
-                break;
-        };
+        Console.WriteLine("Creating new");
+        var brush = new ImageBrush();
+        brush.ImageSource = new BitmapImage(new Uri(imageType==ImageSource.File ? $@"../../../src/IMG/{source}" : source, imageType==ImageSource.File ? UriKind.Relative : UriKind.Absolute));
+        img = brush;
+    }
+}
+
+public class GuiEmpty : GuiRow
+{
+    public Image GuiElement { get; private set; }
+
+    public GuiEmpty(double height, double width)
+    {
+        GuiElement = new GuiImage(ImageSource.File, "Misc/Empty.png", height, width).GuiElement;
+    }
+}
+
+public class GuiImage : GuiRow
+{
+    public Image GuiElement { get; private set; }
+
+    public GuiImage(ImageSource sType, string source, double? height = null, double? width = null)
+    {
+        Console.WriteLine("Creating");
+        GuiElement = new Image();
+        GuiElement.Source = new GuiBackgroundImage(sType, source).img.ImageSource;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)width;
     }
 }
 
@@ -28,17 +57,17 @@ public class GuiButton : GuiRow
     private object ClickAction;
     public Button GuiElement { get; private set; }
 
-    public GuiButton(string name, string text, Action ClickEvent)
+    public GuiButton(string name, string text, Action ClickEvent, double? height = null, double? width = null, int[] backgroundColor = null, GuiBackgroundImage backgroundImage = null)
     {
-        SetValues(name, text, ClickEvent, null);
+        SetValues(name, text, ClickEvent, null, height, width, backgroundColor, backgroundImage);
     }
 
-    public GuiButton(string name, string text, Action<string> ClickEvent)
+    public GuiButton(string name, string text, Action<string> ClickEvent, double? height = null, double? width = null, int[] backgroundColor = null, GuiBackgroundImage backgroundImage = null)
     {
-        SetValues(name, text, null, ClickEvent);
+        SetValues(name, text, null, ClickEvent, height, width, backgroundColor, backgroundImage);
     }
 
-    private void SetValues(string name, string text, Action actionA, Action<string> actionB)
+    private void SetValues(string name, string text, Action actionA, Action<string> actionB, double? height, double? width, int[] backgroundColor, GuiBackgroundImage backgroundImage)
     {
         Name = name;
         Text = text;
@@ -50,15 +79,19 @@ public class GuiButton : GuiRow
         {
             ClickAction = actionA;
         }
-        CreateButton();
+        CreateButton(height, width, backgroundColor, backgroundImage);
     }
 
-    private void CreateButton()
+    private void CreateButton(double? height, double? width, int[] backgroundColor, GuiBackgroundImage backgroundImage)
     {
         GuiElement = new Button();
         GuiElement.Content = Text;
         GuiElement.Name = Name;
         GuiElement.Click += OnClick;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        GuiElement.Background = backgroundColor==null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
+        GuiElement.Background = backgroundImage == null ? GuiElement.Background : backgroundImage.img;
     }
 
     private void OnClick(object sender, RoutedEventArgs e)

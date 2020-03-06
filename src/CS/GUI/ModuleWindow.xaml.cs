@@ -11,6 +11,7 @@ namespace TPKtaneHelper.src.CS.GUI
     /// </summary>
     public partial class ModuleWindow : Window
     {
+        private BindingFlags mainFlags => BindingFlags.Public | BindingFlags.Static;
         public ModuleWindow(string Module, int ID)
         {
             InitializeComponent();
@@ -18,8 +19,8 @@ namespace TPKtaneHelper.src.CS.GUI
             { 
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
-                TP.MessageBox.Text = String.Format((string)ModuleType.GetField("defaultMessage", BindingFlags.Public | BindingFlags.Static).GetValue(null), ID);
-                FieldInfo ElementField = ModuleType.GetField("GuiElements", BindingFlags.Public | BindingFlags.Static);
+                TP.MessageBox.Text = String.Format($"{0} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID);
+                FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
                 GuiElement[][] Elements = (GuiElement[][])ElementField.GetValue(null);
                 foreach (GuiElement[] Row in Elements)
                 {
@@ -27,11 +28,23 @@ namespace TPKtaneHelper.src.CS.GUI
                     Panel.Orientation = Orientation.Horizontal;
                     foreach (GuiElement Element in Row)
                     {
-                        FinalElement F = getElementType(Element);
-                        if (F.finalButton != null)
+                        string finalString = getElementType(Element);
+                        
+                        switch(finalString)
                         {
-                            try { Panel.Children.Add(F.finalButton.GuiElement); }
-                            catch { RemoveChildHelper.RemoveChild(F.finalButton.GuiElement.Parent, F.finalButton.GuiElement); Panel.Children.Add(F.finalButton.GuiElement); }
+                            case "Button":
+                                try { Panel.Children.Add((Element as GuiButton).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiButton).GuiElement.Parent, (Element as GuiButton).GuiElement); Panel.Children.Add((Element as GuiButton).GuiElement); }
+                                break;
+                            case "Empty":
+                                try { Panel.Children.Add((Element as GuiEmpty).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiEmpty).GuiElement.Parent, (Element as GuiEmpty).GuiElement); Panel.Children.Add((Element as GuiEmpty).GuiElement); }
+                                break;
+                            case "Image":
+                                try { Panel.Children.Add((Element as GuiImage).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiImage).GuiElement.Parent, (Element as GuiImage).GuiElement); Panel.Children.Add((Element as GuiImage).GuiElement); }
+                                break;
+                            default:break;
                         }
                     }
                     ModulePanel.Children.Add(Panel);
@@ -42,17 +55,12 @@ namespace TPKtaneHelper.src.CS.GUI
                 sPanel.Children.Add(DoneBTN);
             });
         }
-        private FinalElement getElementType(GuiElement Element)
+        private string getElementType(GuiElement Element)
         {
-            try
-            {
-                GuiButton temp = Element as GuiButton;
-                return new FinalElement(Element, "Button");
-            }
-            catch
-            {
-                return new FinalElement(Element, "");
-            }
+            if (Element as GuiButton != null) return "Button";
+            if (Element as GuiEmpty != null) return "Empty";
+            if (Element as GuiImage != null) return "Image";
+            return "";
         }
 
         private void DoneClick(object sender, RoutedEventArgs e)

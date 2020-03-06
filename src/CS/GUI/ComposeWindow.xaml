@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="ComposeWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="Message" Margin="0,0,0,137"/>
-        <Button x:Name="ModuleChooser" Content="Choose module" Margin="0,297,0,59"/>
-        <Button x:Name="Send" Content="Send" Margin="0,375,0,0"/>
+        <TextBox x:Name="Message" Text="!" Margin="0,0,0,392"/>
+        <Button x:Name="ModuleChooser" Content="Choose module" Margin="0,90,0,266"/>
+        <Button x:Name="Send" Content="Send" Margin="0,168,0,207"/>
+        <CheckBox Content="Queue" x:Name="QueueBox" HorizontalAlignment="Center" Margin="0,47,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,67,0,0" x:Name="QueueName" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
