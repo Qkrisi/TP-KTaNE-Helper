@@ -19,7 +19,7 @@ namespace TPKtaneHelper.src.CS.GUI
             { 
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
-                TP.MessageBox.Text = String.Format($"{0} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID);
+                TP.MessageBox.Text = String.Format($"{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID);
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
                 GuiElement[][] Elements = (GuiElement[][])ElementField.GetValue(null);
                 foreach (GuiElement[] Row in Elements)
