@@ -68,11 +68,12 @@ public class GuiText : GuiDroppableRow
 {
     public TextBlock GuiElement { get; private set; }
 
-    public GuiText(string text, int[] textColor = null, double? height = null, double? width = null)
+    public GuiText(string text, double? fontSize = null, int[] textColor = null, double? height = null, double? width = null)
     {
         GuiElement = new TextBlock();
         GuiElement.Text = text;
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
+        GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
         GuiElement.Height = height == null ? GuiElement.Height : (double)height;
         GuiElement.Height = height == null ? GuiElement.Height : (double)width;
     }

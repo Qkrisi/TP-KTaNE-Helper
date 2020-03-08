@@ -11,6 +11,9 @@
           "CefSharp.Wpf": "79.1.360",
           "Newtonsoft.Json": "12.0.3",
           "TwitchLib": "3.1.0",
+          "VideoLAN.LibVLC.Windows": "3.0.8.1",
+          "Vlc.DotNet.Core": "3.0.0",
+          "Vlc.DotNet.Wpf": "3.0.0",
           "WebSocketSharp-NonPreRelease": "1.0.0"
         },
         "runtime": {
@@ -616,6 +619,34 @@
           }
         }
       },
+      "VideoLAN.LibVLC.Windows/3.0.8.1": {},
+      "Vlc.DotNet.Core/3.0.0": {
+        "dependencies": {
+          "Vlc.DotNet.Core.Interops": "3.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Vlc.DotNet.Core.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Vlc.DotNet.Core.Interops/3.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Vlc.DotNet.Core.Interops.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
+      "Vlc.DotNet.Wpf/3.0.0": {
+        "runtime": {
+          "lib/net45/Vlc.DotNet.Wpf.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
+          }
+        }
+      },
       "WebSocketSharp-NonPreRelease/1.0.0": {
         "runtime": {
           "lib/net35/websocket-sharp.dll": {
@@ -1128,6 +1159,34 @@
       "sha512": "sha512-Wqt3Q5oQC0LipSFmH8nIw3tbEMbDgO6ePx8RUHiFl3SCWgJAbVNbuiFD2ccBRUX0AHSjtaQz/QgY5dN4lgNKfA==",
       "path": "twitchlib.pubsub/3.1.3",
       "hashPath": "twitchlib.pubsub.3.1.3.nupkg.sha512"
+    },
+    "VideoLAN.LibVLC.Windows/3.0.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oIRyxqYQ0pkqpl0ZHDvF/BIjukNVkzLU7kcoszhkBmp7Y6TJJWilVSqeixYskgh0fdHAjTHC7B1z6Dh67i/dKQ==",
+      "path": "videolan.libvlc.windows/3.0.8.1",
+      "hashPath": "videolan.libvlc.windows.3.0.8.1.nupkg.sha512"
+    },
+    "Vlc.DotNet.Core/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-064eShQJntnVKC2vVWwX0yfwkoBQ3gqM+HzwZGj799MQwb0HptnqdOvA3kFm/AZnW4oBUFTmv8LnktEw7eWxnQ==",
+      "path": "vlc.dotnet.core/3.0.0",
+      "hashPath": "vlc.dotnet.core.3.0.0.nupkg.sha512"
+    },
+    "Vlc.DotNet.Core.Interops/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wg9YOCKhKEXVs3osGzN6jqX5zFgjAUmy0PGK/YVXuGcES3SdXvxEfTYbaIl0w3fs4i36rGcqA+b7wAHVHC6GPQ==",
+      "path": "vlc.dotnet.core.interops/3.0.0",
+      "hashPath": "vlc.dotnet.core.interops.3.0.0.nupkg.sha512"
+    },
+    "Vlc.DotNet.Wpf/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Jw1l5Bz5unG1U8ddQl/w+zC+8hF7umlLUv9uad9rmbb4ky2LaRb0tdMHq1T/Dn36wznAdBnSIwk/wwXnsLItLQ==",
+      "path": "vlc.dotnet.wpf/3.0.0",
+      "hashPath": "vlc.dotnet.wpf.3.0.0.nupkg.sha512"
     },
     "WebSocketSharp-NonPreRelease/1.0.0": {
       "type": "package",

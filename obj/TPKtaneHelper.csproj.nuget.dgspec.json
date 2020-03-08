@@ -53,6 +53,18 @@
               "target": "Package",
               "version": "[3.1.0, )"
             },
+            "VideoLAN.LibVLC.Windows": {
+              "target": "Package",
+              "version": "[3.0.8.1, )"
+            },
+            "Vlc.DotNet.Core": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Vlc.DotNet.Wpf": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "WebSocketSharp-NonPreRelease": {
               "target": "Package",
               "version": "[1.0.0, )"

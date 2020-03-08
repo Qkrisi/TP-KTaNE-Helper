@@ -5,15 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TPKtaneHelper"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:Vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <wpf:ChromiumWebBrowser x:Name="Chat" Address="http://localhost:5000/chat" Margin="1362,560,-827,-282"/>
-        <wpf:ChromiumWebBrowser x:Name="Calculator" Address="http://files.timwi.de/Tools/Calculator.html" Margin="1403,15,-854,142"/>
-        <wpf:ChromiumWebBrowser x:Name="Repository" Address="http://ktane.timwi.de" Margin="0,33,535,279"/>
-        <TextBox HorizontalAlignment="Left" Margin="0,684,0,0" x:Name="Notes" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="1362" Height="296" AcceptsReturn="True" AcceptsTab="True"/>
-        <Button Content="Repo" x:Name="Repo" HorizontalAlignment="Left" Height="31" Margin="282,0,0,0" VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.5,0.5">
+        <wpf:ChromiumWebBrowser x:Name="Chat" Address="http://localhost:5000/chat" Margin="1396,560,-861,-282"/>
+        <Vlc:VlcControl x:Name="VLCViewer" Margin="0,33,535,257" Visibility="Hidden"/>
+        <wpf:ChromiumWebBrowser x:Name="Calculator" Address="https://files.timwi.de/Tools/Calculator.html" Margin="1403,15,-854,142"/>
+        <wpf:ChromiumWebBrowser x:Name="Repository" Address="https://ktane.timwi.de" Margin="0,33,535,234"/>
+        <TextBox HorizontalAlignment="Left" Margin="0,718,0,0" x:Name="Notes" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="1362" Height="296" AcceptsReturn="True" AcceptsTab="True"/>
+        <Button Content="Stream" x:Name="streamButton" HorizontalAlignment="Left" Height="31" Margin="477,2,0,0" VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Repo" x:Name="Repo" HorizontalAlignment="Left" Height="31" Margin="400,2,0,0" VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1" ScaleY="1"/>

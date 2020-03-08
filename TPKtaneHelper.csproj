@@ -12,6 +12,9 @@
     <PackageReference Include="CefSharp.Wpf" Version="79.1.360" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="TwitchLib" Version="3.1.0" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.8.1" />
+    <PackageReference Include="Vlc.DotNet.Core" Version="3.0.0" />
+    <PackageReference Include="Vlc.DotNet.Wpf" Version="3.0.0" />
     <PackageReference Include="WebSocketSharp-NonPreRelease" Version="1.0.0" />
   </ItemGroup>
 
