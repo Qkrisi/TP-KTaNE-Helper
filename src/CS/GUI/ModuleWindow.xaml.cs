@@ -19,9 +19,10 @@ namespace TPKtaneHelper.src.CS.GUI
             { 
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
-                TP.MessageBox.Text = String.Format($"{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID);
+                try { TP.MessageBox.Text = String.Format($"{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
+                catch { TP.MessageBox.Text = $"{ID} "; }
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
-                GuiElement[][] Elements = (GuiElement[][])ElementField.GetValue(null);
+                GuiElement[][] Elements = (ElementField.GetValue(null) as GuiElement[][]);
                 foreach (GuiElement[] Row in Elements)
                 {
                     StackPanel Panel = new StackPanel();
@@ -44,6 +45,14 @@ namespace TPKtaneHelper.src.CS.GUI
                                 try { Panel.Children.Add((Element as GuiImage).GuiElement); }
                                 catch { RemoveChildHelper.RemoveChild((Element as GuiImage).GuiElement.Parent, (Element as GuiImage).GuiElement); Panel.Children.Add((Element as GuiImage).GuiElement); }
                                 break;
+                            case "Dropdown":
+                                try { Panel.Children.Add((Element as GuiDropdown).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiDropdown).GuiElement.Parent, (Element as GuiDropdown).GuiElement); Panel.Children.Add((Element as GuiDropdown).GuiElement); }
+                                break;
+                            case "Text":
+                                try { Panel.Children.Add((Element as GuiText).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiText).GuiElement.Parent, (Element as GuiText).GuiElement); Panel.Children.Add((Element as GuiText).GuiElement); }
+                                break;
                             default:break;
                         }
                     }
@@ -60,6 +69,8 @@ namespace TPKtaneHelper.src.CS.GUI
             if (Element as GuiButton != null) return "Button";
             if (Element as GuiEmpty != null) return "Empty";
             if (Element as GuiImage != null) return "Image";
+            if (Element as GuiDropdown != null) return "Dropdown";
+            if (Element as GuiText != null) return "Text";
             return "";
         }
 

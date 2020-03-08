@@ -264,3 +264,6 @@
 [0306/194939.085:WARNING:backend_impl.cc(1835)] Destroying invalid entry.
 [0306/201105.730:WARNING:backend_impl.cc(1835)] Destroying invalid entry.
 [0306/201912.075:WARNING:pref_notifier_impl.cc(61)] Init observer found at shutdown.
+[0308/100622.922:ERROR:broker_win.cc(55)] Error reading broker pipe: A pipe használata befejezõdött. (0x6D)
+[0308/100849.841:ERROR:broker_win.cc(55)] Error reading broker pipe: A pipe használata befejezõdött. (0x6D)
+[0308/101602.685:ERROR:broker_win.cc(141)] Error sending sync broker message: A pipe bezárása folyamatban van. (0xE8)
