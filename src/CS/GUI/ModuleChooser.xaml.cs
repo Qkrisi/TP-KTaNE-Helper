@@ -23,7 +23,8 @@ namespace TPKtaneHelper.src.CS.GUI
                     Panel.Orientation = Orientation.Horizontal;
                     var fullFilePath = @$"https://ktane.timwi.de/icons/{Pair.Key.Replace(" ","%20")}.png";
 
-                    Panel.Children.Add(new GuiImage(ImageSource.URL, fullFilePath).GuiElement);
+                    try { Panel.Children.Add(new GuiImage(ImageSource.URL, fullFilePath).GuiElement); }
+                    catch { Panel.Children.Add(new GuiImage(ImageSource.File, "Misc/ModuleNotFound.png").GuiElement); }
 
                     Button BTN = new Button();
                     BTN.Name = Pair.Key;
