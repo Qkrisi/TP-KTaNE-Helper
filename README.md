@@ -11,3 +11,9 @@ A helper program for TP:KTaNE players
 [TwitchLib](https://www.nuget.org/packages/TwitchLib/)
 
 [WebSocketSharp-NonPreRelease](https://www.nuget.org/packages/WebSocketSharp-NonPreRelease/)
+
+[Vlc.DotNet.Wpf](https://www.nuget.org/packages/Vlc.DotNet.Wpf/)
+
+[Vlc.DotNet.Core](https://www.nuget.org/packages/Vlc.DotNet.Core/)
+
+[VideoLAN.LibVLC.Windows](https://www.nuget.org/packages/VideoLAN.LibVLC.Windows)
