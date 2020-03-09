@@ -1,5 +1,5 @@
 # TP-KTaNE-Helper
-A helper program for TP:KTaNE players
+A helper program for TP:KTaNE players written in C# (WPF)
 
 [Documentation](https://github.com/Qkrisi/TP-KTaNE-Helper/wiki)
 
