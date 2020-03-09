@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using Vlc.DotNet.Wpf;
 using System.Net;
 using System.Collections.Generic;
+using System.Threading;
+using System.Windows.Input;
 
 namespace TPKtaneHelper
 {
@@ -76,6 +78,11 @@ namespace TPKtaneHelper
             VLCViewer.SourceProvider.CreatePlayer(vlcLibDirectory, options);
             VlcViewer = VLCViewer;
             StartStream();
+            MessageBox.TextChanged += TextChange;
+            TP.MessageBox = MessageBox;
+            Sender.Click += (s, e) => Main.SendMSG();
+            new Thread(new ThreadStart(() => ChangeMessage(MessageBox))).Start();
+            new Thread(new ThreadStart(() => ButtonVisibility(Sender, MessageBox))).Start();
         }
 
         private void StartStream()
@@ -142,8 +149,31 @@ namespace TPKtaneHelper
 
         private void ComposeMessage(object sender, RoutedEventArgs e)
         {
-            ComposeWindow p = new ComposeWindow();
+            ModuleChooser p = new ModuleChooser();
             p.Show();
+        }
+
+        private void MessageBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter) Main.SendMSG();
+        }
+
+        private void TextChange(object sender, TextChangedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                TP.Message = (sender as TextBox).Text;
+            });
+        }
+
+        private void ChangeMessage(TextBox Message)
+        {
+            while (true) { try { Application.Current.Dispatcher.Invoke(() => Message.Text = TP.Message); Thread.Sleep(1); } catch { break; } }
+        }
+
+        private void ButtonVisibility(Button sendButton, TextBox msgBox)
+        {
+            while(true) { try { Application.Current.Dispatcher.Invoke(() => { if (msgBox.Text != "") { sendButton.Visibility = Visibility.Visible; } else { sendButton.Visibility = Visibility.Hidden; } }); Thread.Sleep(1); } catch { break; } }
         }
     }
 

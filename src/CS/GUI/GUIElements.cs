@@ -240,3 +240,59 @@ public class GuiDropdown : GuiRow
         return;
     }
 }
+
+public class GuiCheckbox : GuiRow
+{
+    public CheckBox GuiElement { get; private set; }
+
+    private Action<string, bool> actionA { get; set; } = null;
+    private Action<bool> actionB { get; set; } = null;
+
+    public GuiCheckbox(string name, string text, bool _checked, Action<string, bool> changeAction, double? height = null, double? width = null, int[] textColor = null)
+    {
+        GuiElement = new CheckBox();
+        GuiElement.Name = name;
+        GuiElement.Content = text;
+        GuiElement.IsChecked = _checked;
+        actionA = changeAction;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
+        GuiElement.Checked += OnCheck;
+        GuiElement.Unchecked += OnUncheck;
+    }
+
+    public GuiCheckbox(string name, string text, bool _checked, Action<bool> changeAction, double? height = null, double? width = null, int[] textColor = null)
+    {
+        GuiElement = new CheckBox();
+        GuiElement.Name = name;
+        GuiElement.Content = text;
+        GuiElement.IsChecked = _checked;
+        actionB = changeAction;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
+        GuiElement.Checked += OnCheck;
+        GuiElement.Unchecked += OnUncheck;
+    }
+
+    private void OnCheck(object sender, RoutedEventArgs e)
+    {
+        if (actionA != null)
+        {
+            actionA((sender as CheckBox).Name, true);
+            return;
+        }
+        else { actionB(true); }
+    }
+
+    private void OnUncheck(object sender, RoutedEventArgs e)
+    {
+        if (actionA != null)
+        {
+            actionA((sender as CheckBox).Name, false);
+            return;
+        }
+        else { actionB(false); }
+    }
+}

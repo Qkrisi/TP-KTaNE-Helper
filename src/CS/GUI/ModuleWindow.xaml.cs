@@ -19,7 +19,7 @@ namespace TPKtaneHelper.src.CS.GUI
             { 
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
-                try { TP.MessageBox.Text = String.Format($"{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
+                try { TP.MessageBox.Text = String.Format($"!{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
                 catch { TP.MessageBox.Text = $"{ID} "; }
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
                 GuiElement[][] Elements = (ElementField.GetValue(null) as GuiElement[][]);
@@ -53,6 +53,10 @@ namespace TPKtaneHelper.src.CS.GUI
                                 try { Panel.Children.Add((Element as GuiText).GuiElement); }
                                 catch { RemoveChildHelper.RemoveChild((Element as GuiText).GuiElement.Parent, (Element as GuiText).GuiElement); Panel.Children.Add((Element as GuiText).GuiElement); }
                                 break;
+                            case "Checkbox":
+                                try { Panel.Children.Add((Element as GuiCheckbox).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiCheckbox).GuiElement.Parent, (Element as GuiCheckbox).GuiElement); Panel.Children.Add((Element as GuiCheckbox).GuiElement); }
+                                break;
                             default:break;
                         }
                     }
@@ -71,6 +75,7 @@ namespace TPKtaneHelper.src.CS.GUI
             if (Element as GuiImage != null) return "Image";
             if (Element as GuiDropdown != null) return "Dropdown";
             if (Element as GuiText != null) return "Text";
+            if (Element as GuiCheckbox != null) return "Checkbox";
             return "";
         }
 

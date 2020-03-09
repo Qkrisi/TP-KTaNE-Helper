@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="ModuleChooser" Width="Auto" Height="Auto" SizeToContent="WidthAndHeight">
     <StackPanel x:Name="ModulesPanel">
-        <TextBox x:Name="moduleID" Text="0" Grid.ColumnSpan="2" />
+        <TextBox x:Name="moduleID" Text="1" Grid.ColumnSpan="2" />
     </StackPanel>
 </Window>

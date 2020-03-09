@@ -118,4 +118,10 @@ public static class Main
         Dictionary<string, string> UserData = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(DataPath));
         bot = new Bot(UserData["Username"], UserData["OAuthToken"], Channel, announce);
     }
+
+    public static void SendMSG()
+    {
+        bot.SendMessage(TP.Message);
+        TP.Message = "";
+    }
 }

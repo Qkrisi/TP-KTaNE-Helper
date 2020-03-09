@@ -7,9 +7,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="src\CS\GUI\ComposeWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="src\CS\GUI\ModuleChooser.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,9 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="src\CS\GUI\ComposeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="src\CS\GUI\ModuleChooser.xaml">
