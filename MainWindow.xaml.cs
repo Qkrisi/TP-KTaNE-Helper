@@ -48,6 +48,7 @@ namespace TPKtaneHelper
         {
             InitializeComponent();
             Channel = channel;
+            currentState = State.Repo;
             streamBTN = streamButton;
             Repository.LoadingStateChanged += OnLoad;
             Main.RepoButton = Repo;
