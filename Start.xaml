@@ -12,8 +12,10 @@
         <Button Content="derfer99 (Weekend)" x:Name="derfer99" HorizontalAlignment="Center" Margin="0,164,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
         <Button Content="Strike_Kaboom (Whitelist)" x:Name="Strike_Kaboom" HorizontalAlignment="Center" VerticalAlignment="Top" Height="33" Width="194" Margin="0,217,0,0"/>
         <Button Content="Jon123276 (Backup)" x:Name="Jon123276" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
-        <Button Content="MrMelon54 (Backup)" x:Name="MrMelon54" HorizontalAlignment="Center" Margin="0,339,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
-        <Button Content="Qkrisi (Backup)" x:Name="Qkrisi" HorizontalAlignment="Center" Margin="0,401,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
+        <Button Content="eXish (Backup)" x:Name="eXish" HorizontalAlignment="Center" Margin="0,338,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
+        <Button Content="MrMelon54 (Backup)" x:Name="MrMelon54" HorizontalAlignment="Center" Margin="0,401,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
+        <Button Content="Qkrisi (Backup)" x:Name="Qkrisi" HorizontalAlignment="Center" Margin="0,463,0,0" VerticalAlignment="Top" Height="33" Width="194"/>
         <Label Content="Please select one of the streamers below!" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold"/>
+        <Label Content="Loading..." x:Name="Loading" HorizontalAlignment="Center" Margin="0,563,0,0" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Height="39" Visibility="Hidden"/>
     </Grid>
 </Window>

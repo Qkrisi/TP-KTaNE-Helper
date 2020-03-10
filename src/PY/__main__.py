@@ -34,9 +34,7 @@ def Chat(channel):
 			id="chat_embed"
 			src="https://www.twitch.tv/embed/{channel}/chat"
 			height="500"
-			width="350">
-	</iframe>
-	</iframe>
+			width="350" />
 	</body>
 	</html>
 	"""

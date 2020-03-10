@@ -6,6 +6,7 @@ using System.Reflection;
 using System.IO;
 using CefSharp.Wpf;
 using CefSharp;
+using CefSharp.SchemeHandler;
 using TPKtaneHelper.src.CS.GUI;
 using Newtonsoft.Json;
 using Vlc.DotNet.Wpf;
@@ -44,6 +45,8 @@ namespace TPKtaneHelper
 
         private Button streamBTN { get; set; }
 
+        private readonly string fileName = @".\Chat.html";
+
         public MainWindow(string channel)
         {
             InitializeComponent();
@@ -58,7 +61,6 @@ namespace TPKtaneHelper
             Reset.Click += ResetButtonClick;
             Main.StartBot(channel, !_DeveloperMode);
             Back.Click += BackClick;
-            Chat.Address = $"localhost:5000/chat/{channel}";
             Tab1.Click += TabClick;
             Tab2.Click += TabClick;
             Tab3.Click += TabClick;
@@ -82,6 +84,22 @@ namespace TPKtaneHelper
             MessageBox.TextChanged += TextChange;
             TP.MessageBox = MessageBox;
             Sender.Click += (s, e) => Main.SendMSG();
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+                using(StreamWriter sw = File.CreateText(fileName))
+                {
+                    sw.WriteLine($"<html><head><title>Twitch Chat</title></head><body><iframe frameborder={"0"} scrolling={"no"} id={"chat_embed"} src={$"https://www.twitch.tv/embed/{channel}/chat"} height={"500"} width={"350"} /></body></html>");
+                }
+                Chat.Address = "localfolder://chat/";
+            }
+            catch
+            {
+                Chat.Address = $"localhost:5000/chat/{channel}";
+            }
             new Thread(new ThreadStart(() => ChangeMessage(MessageBox))).Start();
             new Thread(new ThreadStart(() => ButtonVisibility(Sender, MessageBox))).Start();
         }
@@ -96,7 +114,11 @@ namespace TPKtaneHelper
                 currentState = State.Repo;
                 return;
             }
-            VlcViewer.SourceProvider.MediaPlayer.Play(gotDict.urls["1080p60"], new[] { "--network-caching=300" });
+            foreach(KeyValuePair<string, string> Pair in gotDict.urls)
+            {
+                VlcViewer.SourceProvider.MediaPlayer.Play(Pair.Value, new[] { "--network-caching=300" });
+                break;
+            }
         }
 
         private void StreamClick(object sender, RoutedEventArgs e)
@@ -194,6 +216,16 @@ namespace TPKtaneHelper
         private static void InitializeCefSharp()
         {
             var settings = new CefSettings();
+            settings.RegisterScheme(new CefCustomScheme
+            {
+                SchemeName = "localfolder",
+                DomainName = "chat",
+                SchemeHandlerFactory = new FolderSchemeHandlerFactory(
+            rootFolder: @".",
+            hostName: "chat",
+            defaultPage: "Chat.html"
+        )
+            });
             settings.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CEF";
             // Set BrowserSubProcessPath based on app bitness at runtime
             settings.BrowserSubprocessPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase,

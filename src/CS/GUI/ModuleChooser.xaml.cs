@@ -45,12 +45,14 @@ namespace TPKtaneHelper.src.CS.GUI
                 try
                 {
                     ModuleWindow p = new ModuleWindow((sender as Button).Name, int.Parse(moduleID.Text));
+                    TP.Done = () => p.Close();
                     p.Show();
                     Close();
                 }
                 catch
                 {
                     ModuleWindow p = new ModuleWindow((sender as Button).Name, 0);
+                    TP.Done = () => p.Close();
                     p.Show();
                     Close();
                 }
