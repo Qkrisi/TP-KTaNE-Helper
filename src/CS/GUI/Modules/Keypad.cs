@@ -8,12 +8,6 @@
 
     public static string defaultMessage = "press ";
 
-
-    public static void Init()
-    {
-        TP.Message = "afsd";
-    }
-
     public static void OnClick(string name)
     {
         name = name.Replace("Button", "");
