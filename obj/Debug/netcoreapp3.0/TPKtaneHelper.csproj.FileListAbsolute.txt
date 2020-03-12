@@ -1325,3 +1325,11 @@ D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\Vlc.DotNet.Wpf.dll
 D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\TPKtaneHelper_Content.g.cs
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\Vlc.DotNet.Core.dll
 D:\CSProjects\TPKtaneHelper\bin\Debug\netcoreapp3.0\Vlc.DotNet.Core.Interops.dll
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileSelector.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileSelector.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileManager.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileManager.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileEditor.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileEditor.baml
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileCreator.g.cs
+D:\CSProjects\TPKtaneHelper\obj\Debug\netcoreapp3.0\src\CS\ProfileCreator.baml

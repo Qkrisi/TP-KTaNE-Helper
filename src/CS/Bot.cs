@@ -25,9 +25,6 @@ public class Bot
 
         client.OnLog += Client_OnLog;
         client.OnJoinedChannel += Client_OnJoinedChannel;
-        client.OnMessageReceived += Client_OnMessageReceived;
-        client.OnWhisperReceived += Client_OnWhisperReceived;
-        client.OnNewSubscriber += Client_OnNewSubscriber;
         client.OnConnected += Client_OnConnected;
 
         send = Send;
@@ -37,7 +34,8 @@ public class Bot
 
     public void SendMessage(string message)
     {
-        client.SendMessage(Channel, message);
+        try { client.SendMessage(Channel, message); }
+        catch { return; }
     }
     private void Client_OnLog(object sender, OnLogArgs e)
     {
@@ -58,20 +56,5 @@ public class Bot
     {
         Channel = e.Channel;
         if(send) client.SendMessage(e.Channel, "Hi there!");
-    }
-
-    private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
-    {
-        return;
-    }
-
-    private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
-    {
-        return;
-    }
-
-    private void Client_OnNewSubscriber(object sender, OnNewSubscriberArgs e)
-    {
-        return;
     }
 }

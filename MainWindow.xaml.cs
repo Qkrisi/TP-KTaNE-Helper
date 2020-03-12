@@ -14,6 +14,7 @@ using System.Net;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
+using TPKtaneHelper.src.CS;
 
 namespace TPKtaneHelper
 {
@@ -68,6 +69,7 @@ namespace TPKtaneHelper
             Tab5.Click += TabClick;
             streamBTN.Click += StreamClick;
             StreamerSelect.Click += StreamerSelectClick;
+            ProfileSelect.Click += ProfileSelectClick;
             Composer.Click += ComposeMessage;
             if (_DeveloperMode) ConsoleAllocator.ShowConsoleWindow();
 
@@ -166,6 +168,14 @@ namespace TPKtaneHelper
         {
             Main.bot.End();
             Start p = new Start();
+            p.Show();
+            Close();
+        }
+
+        private void ProfileSelectClick(object sender, RoutedEventArgs e)
+        {
+            Main.bot.End();
+            ProfileSelector p = new ProfileSelector();
             p.Show();
             Close();
         }

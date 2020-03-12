@@ -13,6 +13,18 @@
     <Compile Update="src\CS\GUI\ModuleWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="src\CS\ProfileCreator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="src\CS\ProfileEditor.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="src\CS\ProfileManager.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="src\CS\ProfileSelector.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Start.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +37,18 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="src\CS\GUI\ModuleWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="src\CS\ProfileCreator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="src\CS\ProfileEditor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="src\CS\ProfileManager.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="src\CS\ProfileSelector.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Start.xaml">

@@ -6,6 +6,7 @@ using CefSharp.Wpf;
 using Newtonsoft.Json;
 using System.IO;
 using static NoteOverride;
+using static profiles;
 
 
 public static class Main
@@ -20,8 +21,6 @@ public static class Main
     private static Tab[] Tabs = new Tab[5] { new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module), new Tab(_module) };
     private static int tabNum = 0;
     public static Tab currentTab => Tabs[tabNum];
-
-    private static readonly string DataPath = @"../../../UserData.json";
 
     public static void CangeText()
     {
@@ -115,8 +114,7 @@ public static class Main
 
     public static void StartBot(string Channel, bool announce)
     {
-        Dictionary<string, string> UserData = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(DataPath));
-        bot = new Bot(UserData["Username"], UserData["OAuthToken"], Channel, announce);
+        bot = new Bot(uName, Oauth, Channel, announce);
     }
 
     public static void SendMSG()
