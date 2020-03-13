@@ -5,6 +5,7 @@ public static class ModuleTypes
 {
     public static Dictionary<string, Type> ModuleTypeDict = new Dictionary<string, Type>()
     {
-        {"Keypad", typeof(Keypad) }
+        {"Keypad", typeof(Keypad) },
+        {"Wires", typeof(Wires) }
     };
 }

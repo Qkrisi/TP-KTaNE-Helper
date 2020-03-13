@@ -5,6 +5,7 @@ using TPKtaneHelper.src.CS.GUI;
 public static class TP
 {
     public static string Message;
+    public static int moduleID;
     public static TextBox MessageBox;
 
     public static readonly Action Done = () => doneAct(ModuleWindow.sendAfterDone);

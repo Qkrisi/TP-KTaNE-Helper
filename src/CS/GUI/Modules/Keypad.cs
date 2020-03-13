@@ -8,7 +8,7 @@
 
     public static string defaultMessage = "press ";
 
-    public static void OnClick(string name)
+    private static void OnClick(string name)
     {
         name = name.Replace("Button", "");
         TP.Message = TP.Message + name + " ";

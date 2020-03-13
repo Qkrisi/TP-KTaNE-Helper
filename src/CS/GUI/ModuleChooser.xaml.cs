@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
-using System.Windows.Media.Imaging;
 using static ModuleTypes;
 
 namespace TPKtaneHelper.src.CS.GUI
@@ -12,6 +11,7 @@ namespace TPKtaneHelper.src.CS.GUI
     /// </summary>
     public partial class ModuleChooser : Window
     {
+        private Dictionary<string, StackPanel> modulePanels { get; set; } = new Dictionary<string, StackPanel>();
         public ModuleChooser()
         {
             InitializeComponent();
@@ -34,6 +34,7 @@ namespace TPKtaneHelper.src.CS.GUI
                     Panel.Children.Add(BTN);
 
                     ModulesPanel.Children.Add(Panel);
+                    modulePanels.Add(Pair.Key, Panel);
                 }
             });
         }
@@ -45,19 +46,35 @@ namespace TPKtaneHelper.src.CS.GUI
                 try
                 {
                     ModuleWindow p = new ModuleWindow((sender as Button).Name, int.Parse(moduleID.Text));
+                    TP.moduleID = int.Parse(moduleID.Text);
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
                     Close();
                 }
                 catch
                 {
-                    ModuleWindow p = new ModuleWindow((sender as Button).Name, 0);
+                    ModuleWindow p = new ModuleWindow((sender as Button).Name, 1);
+                    TP.moduleID = 1;
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
                     Close();
                 }
                 TP.MessageBox.IsReadOnly = true;
             });
+        }
+
+        private void moduleName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string Text = (sender as TextBox).Text;
+            foreach(KeyValuePair<string, StackPanel> Pair in modulePanels)
+            {
+                if(Text=="" || Pair.Key.ToLowerInvariant().StartsWith(Text.ToLowerInvariant()))
+                {
+                    Pair.Value.Visibility = Visibility.Visible;
+                    continue;
+                }
+                Pair.Value.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
