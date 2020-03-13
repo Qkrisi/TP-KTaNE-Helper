@@ -45,17 +45,18 @@ namespace TPKtaneHelper.src.CS.GUI
                 try
                 {
                     ModuleWindow p = new ModuleWindow((sender as Button).Name, int.Parse(moduleID.Text));
-                    TP.Done = () => p.Close();
+                    TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
                     Close();
                 }
                 catch
                 {
                     ModuleWindow p = new ModuleWindow((sender as Button).Name, 0);
-                    TP.Done = () => p.Close();
+                    TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
                     Close();
                 }
+                TP.MessageBox.IsReadOnly = true;
             });
         }
     }

@@ -49,7 +49,7 @@ namespace TPKtaneHelper
         private readonly string fileName = @".\Chat.html";
 
         public MainWindow(string channel)
-        {
+        { 
             InitializeComponent();
             Channel = channel;
             currentState = State.Repo;

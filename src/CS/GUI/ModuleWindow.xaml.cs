@@ -12,6 +12,10 @@ namespace TPKtaneHelper.src.CS.GUI
     public partial class ModuleWindow : Window
     {
         private BindingFlags mainFlags => BindingFlags.Public | BindingFlags.Static;
+
+        public static bool sendAfterDone => (bool)sBox.IsChecked;
+
+        private static CheckBox sBox;
         public ModuleWindow(string Module, int ID)
         {
             InitializeComponent();
@@ -68,6 +72,11 @@ namespace TPKtaneHelper.src.CS.GUI
                 DoneBTN.Content = "Done";
                 DoneBTN.Click += DoneClick;
                 sPanel.Children.Add(DoneBTN);
+                CheckBox sendBox = new CheckBox();
+                sendBox.Content = "Send after done";
+                sendBox.IsChecked = false;
+                sBox = sendBox;
+                sPanel.Children.Add(sBox);
             });
         }
         private string getElementType(GuiElement Element)
@@ -83,6 +92,7 @@ namespace TPKtaneHelper.src.CS.GUI
 
         private void DoneClick(object sender, RoutedEventArgs e)
         {
+            Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
             Close();
         }
     }
