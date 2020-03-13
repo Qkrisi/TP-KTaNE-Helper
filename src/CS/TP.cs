@@ -7,6 +7,6 @@ public static class TP
     public static string Message;
     public static TextBox MessageBox;
 
-    public static Action Done = () => doneAct(ModuleWindow.sendAfterDone);
+    public static readonly Action Done = () => doneAct(ModuleWindow.sendAfterDone);
     public static Action<bool> doneAct;     //Don't use in creators!
 }
