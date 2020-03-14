@@ -11,10 +11,10 @@ false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_0
 D:\CSProjects\TPKtaneHelper\App.xaml
 81633085090
-
-221718751059
+11161842112180
+22850110965
 215447247023
 MainWindow.xaml;src\CS\GUI\ModuleChooser.xaml;src\CS\GUI\ModuleWindow.xaml;src\CS\ProfileCreator.xaml;src\CS\ProfileEditor.xaml;src\CS\ProfileManager.xaml;src\CS\ProfileSelector.xaml;Start.xaml;
 
-True
+False
 

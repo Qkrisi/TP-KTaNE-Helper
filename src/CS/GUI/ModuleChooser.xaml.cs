@@ -12,6 +12,7 @@ namespace TPKtaneHelper.src.CS.GUI
     public partial class ModuleChooser : Window
     {
         private Dictionary<string, StackPanel> modulePanels { get; set; } = new Dictionary<string, StackPanel>();
+        private Dictionary<string, string> moduleNames { get; set; } = new Dictionary<string, string>();
         public ModuleChooser()
         {
             InitializeComponent();
@@ -27,7 +28,8 @@ namespace TPKtaneHelper.src.CS.GUI
                     catch { Panel.Children.Add(new GuiImage(ImageSource.File, "Misc/ModuleNotFound.png").GuiElement); }
 
                     Button BTN = new Button();
-                    BTN.Name = Pair.Key;
+                    moduleNames.Add(Pair.Key.Replace(" ", "_"), Pair.Key);
+                    BTN.Name = Pair.Key.Replace(" ","_");
                     BTN.Content = Pair.Key;
                     BTN.Click += OnClick;
 
@@ -45,7 +47,7 @@ namespace TPKtaneHelper.src.CS.GUI
             {
                 try
                 {
-                    ModuleWindow p = new ModuleWindow((sender as Button).Name, int.Parse(moduleID.Text));
+                    ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], int.Parse(moduleID.Text));
                     TP.moduleID = int.Parse(moduleID.Text);
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
@@ -53,7 +55,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 }
                 catch
                 {
-                    ModuleWindow p = new ModuleWindow((sender as Button).Name, 1);
+                    ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], 1);
                     TP.moduleID = 1;
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();

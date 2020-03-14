@@ -56,7 +56,6 @@ public class GuiImage : GuiDroppableRow
 
     public GuiImage(ImageSource sType, string source, double? height = null, double? width = null)
     {
-        Console.WriteLine("Creating");
         GuiElement = new Image();
         GuiElement.Source = new GuiBackgroundImage(sType, source).img.ImageSource;
         GuiElement.Height = height == null ? GuiElement.Height : (double)height;
@@ -99,7 +98,7 @@ public class GuiButton : GuiRow
 
     private void SetValues(string name, string text, Action actionA, Action<string> actionB, double? height, double? width, double? rotation, int[] backgroundColor, int[] textColor, GuiBackgroundImage backgroundImage)
     {
-        Name = name;
+        Name = name.Replace(" ","_");
         Text = text;
         if(actionA==null)
         {
