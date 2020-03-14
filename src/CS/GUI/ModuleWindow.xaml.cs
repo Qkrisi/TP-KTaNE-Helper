@@ -70,7 +70,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 }
                 Button DoneBTN = new Button();
                 DoneBTN.Content = "Done";
-                DoneBTN.Click += DoneClick;
+                DoneBTN.Click += (s, e) => TP.Done();
                 sPanel.Children.Add(DoneBTN);
                 CheckBox sendBox = new CheckBox();
                 sendBox.Content = "Send after done";
@@ -88,12 +88,6 @@ namespace TPKtaneHelper.src.CS.GUI
             if (Element as GuiText != null) return "Text";
             if (Element as GuiCheckbox != null) return "Checkbox";
             return "";
-        }
-
-        private void DoneClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
-            Close();
         }
     }
 }

@@ -87,17 +87,17 @@ public class GuiButton : GuiRow
     private object ClickAction;
     public Button GuiElement { get; private set; }
 
-    public GuiButton(string name, string text, Action ClickEvent, double? height = null, double? width = null, int[] backgroundColor = null, int[] textColor = null,GuiBackgroundImage backgroundImage = null)
+    public GuiButton(string name, string text, Action ClickEvent, double? height = null, double? width = null, double? rotation = null, int[] backgroundColor = null, int[] textColor = null,GuiBackgroundImage backgroundImage = null)
     {
-        SetValues(name, text, ClickEvent, null, height, width, backgroundColor, textColor, backgroundImage);
+        SetValues(name, text, ClickEvent, null, height, width, rotation, backgroundColor, textColor, backgroundImage);
     }
 
-    public GuiButton(string name, string text, Action<string> ClickEvent, double? height = null, double? width = null, int[] backgroundColor = null, int[] textColor = null, GuiBackgroundImage backgroundImage = null)
+    public GuiButton(string name, string text, Action<string> ClickEvent, double? height = null, double? width = null, double? rotation = null, int[] backgroundColor = null, int[] textColor = null, GuiBackgroundImage backgroundImage = null)
     {
-        SetValues(name, text, null, ClickEvent, height, width, backgroundColor, textColor, backgroundImage);
+        SetValues(name, text, null, ClickEvent, height, width, rotation, backgroundColor, textColor, backgroundImage);
     }
 
-    private void SetValues(string name, string text, Action actionA, Action<string> actionB, double? height, double? width, int[] backgroundColor, int[] textColor, GuiBackgroundImage backgroundImage)
+    private void SetValues(string name, string text, Action actionA, Action<string> actionB, double? height, double? width, double? rotation, int[] backgroundColor, int[] textColor, GuiBackgroundImage backgroundImage)
     {
         Name = name;
         Text = text;
@@ -109,10 +109,10 @@ public class GuiButton : GuiRow
         {
             ClickAction = actionA;
         }
-        CreateButton(height, width, backgroundColor, textColor, backgroundImage);
+        CreateButton(height, width, rotation, backgroundColor, textColor, backgroundImage);
     }
 
-    private void CreateButton(double? height, double? width, int[] backgroundColor, int[] textColor, GuiBackgroundImage backgroundImage)
+    private void CreateButton(double? height, double? width, double? rotation, int[] backgroundColor, int[] textColor, GuiBackgroundImage backgroundImage)
     {
         GuiElement = new Button();
         GuiElement.Content = Text;
@@ -120,6 +120,7 @@ public class GuiButton : GuiRow
         GuiElement.Click += OnClick;
         GuiElement.Height = height == null ? GuiElement.Height : (double)height;
         GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        GuiElement.LayoutTransform = rotation == null ? GuiElement.LayoutTransform : new RotateTransform((double)rotation, 0.5, 0.5);
         GuiElement.Background = backgroundColor==null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.Background = backgroundImage == null ? GuiElement.Background : backgroundImage.img;
