@@ -24,9 +24,11 @@ namespace TPKtaneHelper.src.CS.GUI
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
                 MethodInfo initMethod = ModuleType.GetMethod("Init", mainFlags);
+                #pragma warning disable 8632
                 if (initMethod != null) initMethod.Invoke(null, new object?[] { });
+                #pragma warning restore 8632
                 try { TP.MessageBox.Text = String.Format($"!{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
-                catch { TP.MessageBox.Text = $"{ID} "; }
+                catch { TP.MessageBox.Text = $"!{ID} "; }
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
                 GuiElement[][] Elements = (ElementField.GetValue(null) as GuiElement[][]);
                 foreach (GuiElement[] Row in Elements)
