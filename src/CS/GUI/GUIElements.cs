@@ -117,7 +117,7 @@ public class GuiEmpty : GuiDroppableRow
         GuiElement = new Separator();
         GuiElement.Height = height;
         GuiElement.Width = width;
-        GuiElement.Visibility = Visibility.Hidden;
+        this.Hide(true);
     }
 }
 
