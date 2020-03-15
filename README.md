@@ -17,3 +17,5 @@ A helper program for TP:KTaNE players written in C# (WPF)
 [Vlc.DotNet.Core](https://www.nuget.org/packages/Vlc.DotNet.Core/)
 
 [VideoLAN.LibVLC.Windows](https://www.nuget.org/packages/VideoLAN.LibVLC.Windows)
+
+[Extended.WPF.Toolkit](https://www.nuget.org/packages/Extended.Wpf.Toolkit/)
