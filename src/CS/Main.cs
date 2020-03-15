@@ -86,6 +86,12 @@ public static class Main
                 }
                 SaveNotes();
             }
+            if(Notes.Text == "Notes will show once the repo loads.")
+            {
+                Notes.IsReadOnly = true;
+                return;
+            }
+            Notes.IsReadOnly = false;
         });
     }
 

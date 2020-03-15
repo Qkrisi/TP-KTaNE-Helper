@@ -110,11 +110,14 @@ public class GuiBackgroundImage
 
 public class GuiEmpty : GuiDroppableRow
 {
-    public Image GuiElement { get; private set; }
+    public Separator GuiElement { get; private set; }
 
     public GuiEmpty(double height, double width)
     {
-        GuiElement = new GuiImage(ImageSource.File, "Misc/Empty.png", height, width).GuiElement;
+        GuiElement = new Separator();
+        GuiElement.Height = height;
+        GuiElement.Width = width;
+        GuiElement.Visibility = Visibility.Hidden;
     }
 }
 
@@ -489,6 +492,7 @@ public class GuiUpDown : GuiRow
 
     private void OnChange(object sender, RoutedPropertyChangedEventArgs<object> e)
     {
+        if ((sender as IntegerUpDown).Value == null) return;
         if(actionA==null)
         {
             actionB((int)(sender as IntegerUpDown).Value);

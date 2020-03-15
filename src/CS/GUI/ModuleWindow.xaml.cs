@@ -78,8 +78,9 @@ namespace TPKtaneHelper.src.CS.GUI
                     }
                     ModulePanel.Children.Add(Panel);
                 }
+                FieldInfo TextOverride = ModuleType.GetField("DoneTextOverride", mainFlags);
                 Button DoneBTN = new Button();
-                DoneBTN.Content = "Done";
+                DoneBTN.Content = TextOverride == null ? "Done" : (string)TextOverride.GetValue(null);
                 if (doneOverride == null) { DoneBTN.Click += (s, e) => TP.Done(); }
                 else { DoneBTN.Click += (s, e) => { doneOverride.Invoke(null, new object?[] { }); TP.Done(); }; }
                 sPanel.Children.Add(DoneBTN);
