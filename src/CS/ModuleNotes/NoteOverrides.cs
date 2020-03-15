@@ -9,5 +9,5 @@ public static class NoteOverride
         {"Murder", "Suspects: \nWeapons: \nRoom: " }
     };
 
-    public static Dictionary<string, string> UserOverrides = new Dictionary<string, string>();
+    public static Dictionary<string, string> UserOverrides = new Dictionary<string, string>();      //Do not modify!
 }

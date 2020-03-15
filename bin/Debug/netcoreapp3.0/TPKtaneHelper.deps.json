@@ -9,6 +9,7 @@
       "TPKtaneHelper/1.0.0": {
         "dependencies": {
           "CefSharp.Wpf": "79.1.360",
+          "Extended.Wpf.Toolkit": "3.8.1",
           "Newtonsoft.Json": "12.0.3",
           "TwitchLib": "3.1.0",
           "VideoLAN.LibVLC.Windows": "3.0.8.1",
@@ -31,6 +32,65 @@
       "CefSharp.Wpf/79.1.360": {
         "dependencies": {
           "CefSharp.Common": "79.1.360"
+        }
+      },
+      "Extended.Wpf.Toolkit/3.8.1": {
+        "runtime": {
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.Aero.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.Metro.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.Themes.VS2010.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.0"
+          },
+          "lib/net40/Xceed.Wpf.AvalonDock.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.0"
+          },
+          "lib/net40/Xceed.Wpf.Toolkit.dll": {
+            "assemblyVersion": "3.8.0.0",
+            "fileVersion": "3.8.0.0"
+          }
+        },
+        "resources": {
+          "lib/net40/cs-CZ/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "cs-CZ"
+          },
+          "lib/net40/de/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "de"
+          },
+          "lib/net40/es/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "es"
+          },
+          "lib/net40/fr/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/net40/hu/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "hu"
+          },
+          "lib/net40/it/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "it"
+          },
+          "lib/net40/pt-BR/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/net40/ro/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ro"
+          },
+          "lib/net40/ru/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/net40/sv/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "sv"
+          },
+          "lib/net40/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll": {
+            "locale": "zh-Hans"
+          }
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -690,6 +750,13 @@
       "sha512": "sha512-K4shUXhU8toNl0YzEbOcNo9S4GFIAV7ppCvj/pBkpuIpgf1j8FRyX8ZCCKv/XQrkNL5Fe33J43JCgN2PREVu5w==",
       "path": "cefsharp.wpf/79.1.360",
       "hashPath": "cefsharp.wpf.79.1.360.nupkg.sha512"
+    },
+    "Extended.Wpf.Toolkit/3.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eSD4/BY/xV29KaQi9A65VscpeU3rSrlvadIUepSx5ukeUajW3ph8+n4AlOswRMszbD4DDmrJ4g5O51bCUpiOjw==",
+      "path": "extended.wpf.toolkit/3.8.1",
+      "hashPath": "extended.wpf.toolkit.3.8.1.nupkg.sha512"
     },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",

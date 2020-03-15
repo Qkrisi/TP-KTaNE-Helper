@@ -4,6 +4,8 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using Xceed.Wpf.Toolkit;
 
 public class GuiElement { }
 public class GuiRow : GuiElement { }
@@ -78,6 +80,52 @@ public class GuiText : GuiDroppableRow
     }
 }
 
+public class GuiTextBox : GuiRow
+{
+    public TextBox GuiElement { get; private set; }
+
+    public string Text => GuiElement.Text;
+
+    private Action<string> changeActA { get; set; }
+    private Action<string, string> changeActB { get; set; }
+
+    public GuiTextBox(Action<string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
+    {
+        GuiElement = new TextBox();
+        changeActA = changeAction;
+        GuiElement.Text = text;
+        GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)width;
+        GuiElement.Background = backgroundColor == null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
+        GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
+        GuiElement.TextChanged += OnChange;
+    }
+
+    public GuiTextBox(string name, Action<string, string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
+    {
+        GuiElement = new TextBox();
+        changeActB = changeAction;
+        GuiElement.Text = text;
+        GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Height = height == null ? GuiElement.Height : (double)width;
+        GuiElement.Background = backgroundColor == null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
+        GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
+        GuiElement.TextChanged += OnChange;
+    }
+
+    private void OnChange(object sender, TextChangedEventArgs e)
+    {
+       if(changeActA==null)
+        {
+            changeActB((sender as TextBox).Name, (sender as TextBox).Text);
+            return;
+        }
+        changeActA((sender as TextBox).Text);
+    }
+}
+
 public class GuiButton : GuiRow
 {
 
@@ -115,7 +163,7 @@ public class GuiButton : GuiRow
     {
         GuiElement = new Button();
         GuiElement.Content = Text;
-        GuiElement.Name = Name;
+        GuiElement.Name = Name.Replace(" ", "_");
         GuiElement.Click += OnClick;
         GuiElement.Height = height == null ? GuiElement.Height : (double)height;
         GuiElement.Width = width == null ? GuiElement.Width : (double)width;
@@ -140,6 +188,18 @@ public class GuiDropdown : GuiRow
 {
     public ComboBox GuiElement { get; private set; }
 
+    public string Selected
+    {
+        get
+        {
+            if (!dType)
+            {
+                return new Regex(Regex.Escape("System.Windows.Controls.ComboBoxItem: ")).Replace(GuiElement.SelectedItem.ToString(), "", 1);
+            }
+            return ((GuiElement.SelectedItem as ComboBoxItem).Content as StackPanel).Name.Replace("_", " ");
+        }
+    }
+
     private Action<string, string> ChangeAction { get; set; }
 
     private string NoUse { get; set; }
@@ -151,7 +211,7 @@ public class GuiDropdown : GuiRow
     public GuiDropdown(string Name, string defaultValue, string[] Values, Action<string, string> changeAction)
     {
         GuiElement = new ComboBox();
-        GuiElement.Name = Name;
+        GuiElement.Name = Name.Replace(" ", "_");
         GuiElement.SelectionChanged += OnChange;
         ChangeAction = changeAction;
         NoUse = defaultValue;
@@ -171,7 +231,7 @@ public class GuiDropdown : GuiRow
     public GuiDropdown(string Name, GuiDroppableRow[] defaultValue, GuiDroppable[][] Values, string[] valueNames, Action<string, string> changeAction)
     {
         GuiElement = new ComboBox();
-        GuiElement.Name = Name;
+        GuiElement.Name = Name.Replace(" ", "_");
         GuiElement.SelectionChanged += OnChange;
         ChangeAction = changeAction;
         dType = true;
@@ -204,7 +264,7 @@ public class GuiDropdown : GuiRow
         {
             StackPanel itemPanel = new StackPanel();
             itemPanel.Orientation = Orientation.Horizontal;
-            itemPanel.Name = valueNames[i];
+            itemPanel.Name = valueNames[i].Replace(" ","_");
             foreach (GuiDroppable RowElement in Values[i])
             {
                 switch (ElementUtilities.GetDroppableType(RowElement))
@@ -236,7 +296,7 @@ public class GuiDropdown : GuiRow
             if (text != NoUse) ChangeAction((sender as ComboBox).Name, text);
             return;
         }
-        if (((sender as ComboBox).SelectedItem as ComboBoxItem).Content as StackPanel != NoUsePanel) ChangeAction((sender as ComboBox).Name, (((sender as ComboBox).SelectedItem as ComboBoxItem).Content as StackPanel).Name);
+        if (((sender as ComboBox).SelectedItem as ComboBoxItem).Content as StackPanel != NoUsePanel) ChangeAction((sender as ComboBox).Name, (((sender as ComboBox).SelectedItem as ComboBoxItem).Content as StackPanel).Name.Replace("_"," "));
         return;
     }
 }
@@ -245,13 +305,15 @@ public class GuiCheckbox : GuiRow
 {
     public CheckBox GuiElement { get; private set; }
 
+    public bool isChecked => (bool)GuiElement.IsChecked;
+
     private Action<string, bool> actionA { get; set; } = null;
     private Action<bool> actionB { get; set; } = null;
 
     public GuiCheckbox(string name, string text, bool _checked, Action<string, bool> changeAction, double? height = null, double? width = null, int[] textColor = null)
     {
         GuiElement = new CheckBox();
-        GuiElement.Name = name;
+        GuiElement.Name = name.Replace(" ", "_");
         GuiElement.Content = text;
         GuiElement.IsChecked = _checked;
         actionA = changeAction;
@@ -265,7 +327,7 @@ public class GuiCheckbox : GuiRow
     public GuiCheckbox(string name, string text, bool _checked, Action<bool> changeAction, double? height = null, double? width = null, int[] textColor = null)
     {
         GuiElement = new CheckBox();
-        GuiElement.Name = name;
+        GuiElement.Name = name.Replace(" ", "_");
         GuiElement.Content = text;
         GuiElement.IsChecked = _checked;
         actionB = changeAction;
@@ -294,5 +356,77 @@ public class GuiCheckbox : GuiRow
             return;
         }
         else { actionB(false); }
+    }
+}
+
+
+public enum UpDownFormats
+{
+    Currency,
+    FixedPoint,
+    General,
+    Number,
+    Percent
+}
+public class GuiUpDown : GuiRow
+{
+    public IntegerUpDown GuiElement { get; private set; }
+
+    public int Value => (int)GuiElement.Value;
+
+    private Action<string, int> actionA { get; set; } = null;
+    private Action<int> actionB { get; set; } = null;
+
+    private static readonly Dictionary<UpDownFormats, string> formatStrings = new Dictionary<UpDownFormats, string>()
+    {
+        {UpDownFormats.Currency, "C0" },
+        {UpDownFormats.FixedPoint, "F0" },
+        {UpDownFormats.General, "G0" },
+        {UpDownFormats.Number, "N0" },
+        {UpDownFormats.Percent, "P0" },
+    };
+
+    public GuiUpDown(string name, int defaultValue, int minimum, int maximum, Action<string, int> changeAction, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
+    {
+        GuiElement = new IntegerUpDown();
+        GuiElement.Name = name.Replace(" ", "_");
+        GuiElement.Value = defaultValue;
+        GuiElement.Minimum = minimum;
+        GuiElement.Maximum = maximum;
+        GuiElement.AllowSpin = allowSpin;
+        GuiElement.Watermark = watermark;
+        GuiElement.Increment = increment;
+        GuiElement.FormatString = formatStrings[format];
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        actionA = changeAction;
+        GuiElement.ValueChanged += OnChange;
+    }
+
+    public GuiUpDown(string name, int defaultValue, int minimum, int maximum, Action<int> changeAction, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
+    {
+        GuiElement = new IntegerUpDown();
+        GuiElement.Name = name.Replace(" ","_");
+        GuiElement.Value = defaultValue;
+        GuiElement.Minimum = minimum;
+        GuiElement.Maximum = maximum;
+        GuiElement.AllowSpin = allowSpin;
+        GuiElement.Watermark = watermark;
+        GuiElement.Increment = increment;
+        GuiElement.FormatString = formatStrings[format];
+        GuiElement.Height = height == null ? GuiElement.Height : (double)height;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
+        actionB = changeAction;
+        GuiElement.ValueChanged += OnChange;
+    }
+
+    private void OnChange(object sender, RoutedPropertyChangedEventArgs<object> e)
+    {
+        if(actionA==null)
+        {
+            actionB((int)(sender as IntegerUpDown).Value);
+            return;
+        }
+        actionA((sender as IntegerUpDown).Name, (int)(sender as IntegerUpDown).Value);
     }
 }

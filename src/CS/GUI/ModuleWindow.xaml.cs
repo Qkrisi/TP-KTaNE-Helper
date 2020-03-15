@@ -16,19 +16,19 @@ namespace TPKtaneHelper.src.CS.GUI
         public static bool sendAfterDone => (bool)sBox.IsChecked;
 
         private static CheckBox sBox;
+        #pragma warning disable 8632
         public ModuleWindow(string Module, int ID)
         {
             InitializeComponent();
             Application.Current.Dispatcher.Invoke(() =>
-            { 
+            {
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
                 MethodInfo initMethod = ModuleType.GetMethod("Init", mainFlags);
-                #pragma warning disable 8632
                 if (initMethod != null) initMethod.Invoke(null, new object?[] { });
-                #pragma warning restore 8632
                 try { TP.MessageBox.Text = String.Format($"!{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
                 catch { TP.MessageBox.Text = $"!{ID} "; }
+                MethodInfo doneOverride = ModuleType.GetMethod("DoneOverride", mainFlags);
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
                 GuiElement[][] Elements = (ElementField.GetValue(null) as GuiElement[][]);
                 foreach (GuiElement[] Row in Elements)
@@ -38,8 +38,8 @@ namespace TPKtaneHelper.src.CS.GUI
                     foreach (GuiElement Element in Row)
                     {
                         string finalString = getElementType(Element);
-                        
-                        switch(finalString)
+
+                        switch (finalString)
                         {
                             case "Button":
                                 try { Panel.Children.Add((Element as GuiButton).GuiElement); }
@@ -61,18 +61,27 @@ namespace TPKtaneHelper.src.CS.GUI
                                 try { Panel.Children.Add((Element as GuiText).GuiElement); }
                                 catch { RemoveChildHelper.RemoveChild((Element as GuiText).GuiElement.Parent, (Element as GuiText).GuiElement); Panel.Children.Add((Element as GuiText).GuiElement); }
                                 break;
+                            case "TextBox":
+                                try { Panel.Children.Add((Element as GuiTextBox).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiTextBox).GuiElement.Parent, (Element as GuiTextBox).GuiElement); Panel.Children.Add((Element as GuiTextBox).GuiElement); }
+                                break;
                             case "Checkbox":
                                 try { Panel.Children.Add((Element as GuiCheckbox).GuiElement); }
                                 catch { RemoveChildHelper.RemoveChild((Element as GuiCheckbox).GuiElement.Parent, (Element as GuiCheckbox).GuiElement); Panel.Children.Add((Element as GuiCheckbox).GuiElement); }
                                 break;
-                            default:break;
+                            case "UpDown":
+                                try { Panel.Children.Add((Element as GuiUpDown).GuiElement); }
+                                catch { RemoveChildHelper.RemoveChild((Element as GuiUpDown).GuiElement.Parent, (Element as GuiUpDown).GuiElement); Panel.Children.Add((Element as GuiUpDown).GuiElement); }
+                                break;
+                            default: break;
                         }
                     }
                     ModulePanel.Children.Add(Panel);
                 }
                 Button DoneBTN = new Button();
                 DoneBTN.Content = "Done";
-                DoneBTN.Click += (s, e) => TP.Done();
+                if (doneOverride == null) { DoneBTN.Click += (s, e) => TP.Done(); }
+                else { DoneBTN.Click += (s, e) => { doneOverride.Invoke(null, new object?[] { }); TP.Done(); }; }
                 sPanel.Children.Add(DoneBTN);
                 CheckBox sendBox = new CheckBox();
                 sendBox.Content = "Send after done";
@@ -81,6 +90,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 sPanel.Children.Add(sBox);
             });
         }
+        #pragma warning restore 8632
         private string getElementType(GuiElement Element)
         {
             if (Element as GuiButton != null) return "Button";
@@ -88,7 +98,9 @@ namespace TPKtaneHelper.src.CS.GUI
             if (Element as GuiImage != null) return "Image";
             if (Element as GuiDropdown != null) return "Dropdown";
             if (Element as GuiText != null) return "Text";
+            if (Element as GuiTextBox != null) return "TextBox";
             if (Element as GuiCheckbox != null) return "Checkbox";
+            if (Element as GuiUpDown != null) return "UpDown";
             return "";
         }
     }

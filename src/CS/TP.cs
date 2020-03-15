@@ -8,6 +8,6 @@ public static class TP
     public static int moduleID;
     public static TextBox MessageBox;
 
-    public static readonly Action Done = () => doneAct(ModuleWindow.sendAfterDone);
-    public static Action<bool> doneAct;     //Don't use in creators!
+    public static readonly Action Done = () => { try { doneAct(ModuleWindow.sendAfterDone); } catch { } };
+    public static Action<bool> doneAct;     //Don not use in creators!
 }
