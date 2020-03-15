@@ -48,6 +48,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 try
                 {
                     ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], int.Parse(moduleID.Text));
+                    p.Closing += (s, e) => Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
                     TP.moduleID = int.Parse(moduleID.Text);
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
@@ -56,6 +57,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 catch
                 {
                     ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], 1);
+                    p.Closing += (s, e) => Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
                     TP.moduleID = 1;
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
