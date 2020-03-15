@@ -91,7 +91,7 @@ namespace TPKtaneHelper.src.CS.GUI
             });
         }
         #pragma warning restore 8632
-        private string getElementType(GuiElement Element)
+        public static string getElementType(GuiElement Element)
         {
             if (Element as GuiButton != null) return "Button";
             if (Element as GuiEmpty != null) return "Empty";

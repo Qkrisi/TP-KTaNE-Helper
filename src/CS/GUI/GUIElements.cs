@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Xceed.Wpf.Toolkit;
+using static TPKtaneHelper.src.CS.GUI.ModuleWindow;
 
 public class GuiElement { }
 public class GuiRow : GuiElement { }
@@ -21,6 +22,71 @@ public static class ElementUtilities
         if (Element as GuiImage != null) return "Image";
         if (Element as GuiText != null) return "Text";
         return "";
+    }
+
+    public static void Show(this GuiRow Element)
+    {
+        switch(getElementType(Element))
+        {
+            case "Button":
+                (Element as GuiButton).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "Empty":
+                (Element as GuiEmpty).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "Image":
+                (Element as GuiImage).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "Dropdown":
+                (Element as GuiDropdown).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "Text":
+                (Element as GuiText).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "TextBox":
+                (Element as GuiTextBox).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "Checkbox":
+                (Element as GuiCheckbox).GuiElement.Visibility = Visibility.Visible;
+                break;
+            case "UpDown":
+                (Element as GuiUpDown).GuiElement.Visibility = Visibility.Visible;
+                break;
+            default:break;
+        }
+    }
+
+    public static void Hide(this GuiRow Element, bool Render)
+    {
+        Visibility toSet = Render ? Visibility.Hidden : Visibility.Collapsed;
+        switch (getElementType(Element))
+        {
+            case "Button":
+                (Element as GuiButton).GuiElement.Visibility = toSet;
+                break;
+            case "Empty":
+                (Element as GuiEmpty).GuiElement.Visibility = toSet;
+                break;
+            case "Image":
+                (Element as GuiImage).GuiElement.Visibility = toSet;
+                break;
+            case "Dropdown":
+                (Element as GuiDropdown).GuiElement.Visibility = toSet;
+                break;
+            case "Text":
+                (Element as GuiText).GuiElement.Visibility = toSet;
+                break;
+            case "TextBox":
+                (Element as GuiTextBox).GuiElement.Visibility = toSet;
+                break;
+            case "Checkbox":
+                (Element as GuiCheckbox).GuiElement.Visibility = toSet;
+                break;
+            case "UpDown":
+                (Element as GuiUpDown).GuiElement.Visibility = toSet;
+                break;
+            default: break;
+        }
     }
 }
 
@@ -84,7 +150,7 @@ public class GuiTextBox : GuiRow
 {
     public TextBox GuiElement { get; private set; }
 
-    public string Text => GuiElement.Text;
+    public string Text { get => GuiElement.Text; set { GuiElement.Text = value; } }
 
     private Action<string> changeActA { get; set; }
     private Action<string, string> changeActB { get; set; }
@@ -237,6 +303,7 @@ public class GuiDropdown : GuiRow
         dType = true;
 
         NoUsePanel = new StackPanel();
+        NoUsePanel.Name = Name;
         NoUsePanel.Orientation = Orientation.Horizontal;
         foreach(GuiDroppableRow RowElement in defaultValue)
         {
@@ -305,7 +372,7 @@ public class GuiCheckbox : GuiRow
 {
     public CheckBox GuiElement { get; private set; }
 
-    public bool isChecked => (bool)GuiElement.IsChecked;
+    public bool isChecked { get => (bool)GuiElement.IsChecked; set { GuiElement.IsChecked = value; } }
 
     private Action<string, bool> actionA { get; set; } = null;
     private Action<bool> actionB { get; set; } = null;
@@ -372,7 +439,7 @@ public class GuiUpDown : GuiRow
 {
     public IntegerUpDown GuiElement { get; private set; }
 
-    public int Value => (int)GuiElement.Value;
+    public int? Value { get => GuiElement.Value; set { GuiElement.Value = value; } }
 
     private Action<string, int> actionA { get; set; } = null;
     private Action<int> actionB { get; set; } = null;
@@ -386,13 +453,13 @@ public class GuiUpDown : GuiRow
         {UpDownFormats.Percent, "P0" },
     };
 
-    public GuiUpDown(string name, int defaultValue, int minimum, int maximum, Action<string, int> changeAction, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
+    public GuiUpDown(string name, Action<string, int> changeAction, int? defaultValue = null, int? minimum = null, int? maximum = null, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
     {
         GuiElement = new IntegerUpDown();
         GuiElement.Name = name.Replace(" ", "_");
         GuiElement.Value = defaultValue;
-        GuiElement.Minimum = minimum;
-        GuiElement.Maximum = maximum;
+        GuiElement.Minimum = minimum == null ? GuiElement.Minimum : minimum;
+        GuiElement.Maximum = maximum == null ? GuiElement.Maximum : maximum;
         GuiElement.AllowSpin = allowSpin;
         GuiElement.Watermark = watermark;
         GuiElement.Increment = increment;
@@ -403,13 +470,13 @@ public class GuiUpDown : GuiRow
         GuiElement.ValueChanged += OnChange;
     }
 
-    public GuiUpDown(string name, int defaultValue, int minimum, int maximum, Action<int> changeAction, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
+    public GuiUpDown(string name, Action<int> changeAction, int? defaultValue = null, int? minimum = null, int? maximum = null, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
     {
         GuiElement = new IntegerUpDown();
         GuiElement.Name = name.Replace(" ","_");
         GuiElement.Value = defaultValue;
-        GuiElement.Minimum = minimum;
-        GuiElement.Maximum = maximum;
+        GuiElement.Minimum = minimum == null ? GuiElement.Minimum : minimum;
+        GuiElement.Maximum = maximum == null ? GuiElement.Maximum : maximum;
         GuiElement.AllowSpin = allowSpin;
         GuiElement.Watermark = watermark;
         GuiElement.Increment = increment;
