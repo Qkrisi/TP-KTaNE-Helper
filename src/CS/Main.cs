@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows;
 using CefSharp.Wpf;
-using Newtonsoft.Json;
-using System.IO;
 using static NoteOverride;
 using static profiles;
 

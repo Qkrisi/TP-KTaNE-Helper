@@ -24,8 +24,6 @@ namespace TPKtaneHelper.src.CS.GUI
             {
                 StackPanel ModulePanel = ModuleControls;
                 Type ModuleType = ModuleTypeDict[Module];
-                MethodInfo initMethod = ModuleType.GetMethod("Init", mainFlags);
-                if (initMethod != null) initMethod.Invoke(null, new object?[] { });
                 try { TP.MessageBox.Text = String.Format($"!{"{0}"} {(string)ModuleType.GetField("defaultMessage", mainFlags).GetValue(null)}", ID); }
                 catch { TP.MessageBox.Text = $"!{ID} "; }
                 MethodInfo doneOverride = ModuleType.GetMethod("DoneOverride", mainFlags);
@@ -75,9 +73,12 @@ namespace TPKtaneHelper.src.CS.GUI
                                 break;
                             default: break;
                         }
+                        if (finalString != "Empty") (Element as GuiRow).Show();
                     }
                     ModulePanel.Children.Add(Panel);
                 }
+                MethodInfo initMethod = ModuleType.GetMethod("Init", mainFlags);
+                if (initMethod != null) initMethod.Invoke(null, new object?[] { });
                 FieldInfo TextOverride = ModuleType.GetField("DoneTextOverride", mainFlags);
                 Button DoneBTN = new Button();
                 DoneBTN.Content = TextOverride == null ? "Done" : (string)TextOverride.GetValue(null);
@@ -85,7 +86,8 @@ namespace TPKtaneHelper.src.CS.GUI
                 else { DoneBTN.Click += (s, e) => { doneOverride.Invoke(null, new object?[] { }); TP.Done(); }; }
                 sPanel.Children.Add(DoneBTN);
                 CheckBox sendBox = new CheckBox();
-                sendBox.Content = "Send after done";
+                FieldInfo CheckboxOverride = ModuleType.GetField("CheckboxOverride", mainFlags);
+                sendBox.Content = $"Send after {(CheckboxOverride==null ? "done" : (string)CheckboxOverride.GetValue(null))}";
                 sendBox.IsChecked = false;
                 sBox = sendBox;
                 sPanel.Children.Add(sBox);

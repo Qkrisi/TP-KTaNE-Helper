@@ -24,6 +24,21 @@ public static class ElementUtilities
         return "";
     }
 
+    public static Dictionary<string, GuiRow> elementNames = new Dictionary<string, GuiRow>();
+
+    public static void addToDict(string Name, GuiRow Element)
+    {
+        try
+        {
+            elementNames[Name] = Element;
+        }
+        catch
+        {
+            elementNames.Add(Name, Element);
+        }
+    }
+
+    #region ExtensionMethods
     public static void Show(this GuiRow Element)
     {
         switch(getElementType(Element))
@@ -88,6 +103,19 @@ public static class ElementUtilities
             default: break;
         }
     }
+
+    public static void HideElemenet(this string eName, bool Render)
+    {
+        try
+        {
+            elementNames[eName].Hide(Render);
+        }
+        catch
+        {
+            return;
+        }
+    }
+    #endregion
 }
 
 public enum ImageSource
@@ -101,7 +129,6 @@ public class GuiBackgroundImage
     public ImageBrush img { get; private set; }
     public GuiBackgroundImage(ImageSource imageType, string source)
     {
-        Console.WriteLine("Creating new");
         var brush = new ImageBrush();
         brush.ImageSource = new BitmapImage(new Uri(imageType==ImageSource.File ? $@"../../../src/IMG/{source}" : source, imageType==ImageSource.File ? UriKind.Relative : UriKind.Absolute));
         img = brush;
@@ -173,7 +200,9 @@ public class GuiTextBox : GuiRow
 
     public GuiTextBox(string name, Action<string, string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
     {
+        name = name.Replace(" ", "_");
         GuiElement = new TextBox();
+        GuiElement.Name = name;
         changeActB = changeAction;
         GuiElement.Text = text;
         GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
@@ -182,6 +211,7 @@ public class GuiTextBox : GuiRow
         GuiElement.Background = backgroundColor == null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.TextChanged += OnChange;
+        ElementUtilities.addToDict(name, this);
     }
 
     private void OnChange(object sender, TextChangedEventArgs e)
@@ -240,6 +270,7 @@ public class GuiButton : GuiRow
         GuiElement.Background = backgroundColor==null ? GuiElement.Background : new SolidColorBrush(Color.FromArgb(255, (byte)backgroundColor[0], (byte)backgroundColor[1], (byte)backgroundColor[2]));
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.Background = backgroundImage == null ? GuiElement.Background : backgroundImage.img;
+        ElementUtilities.addToDict(Name, this);
     }
 
     private void OnClick(object sender, RoutedEventArgs e)
@@ -295,6 +326,7 @@ public class GuiDropdown : GuiRow
             item.Content = value;
             GuiElement.Items.Add(item);
         }
+        ElementUtilities.addToDict(Name.Replace(" ", "_"), this);
     }
 
     public GuiDropdown(string Name, GuiDroppableRow[] defaultValue, GuiDroppable[][] Values, string[] valueNames, Action<string, string> changeAction)
@@ -356,6 +388,7 @@ public class GuiDropdown : GuiRow
             Item.Content = itemPanel;
             GuiElement.Items.Add(Item);
         }
+        ElementUtilities.addToDict(Name.Replace(" ", "_"), this);
     }
 
     private void OnChange(object sender, SelectionChangedEventArgs e)
@@ -392,6 +425,7 @@ public class GuiCheckbox : GuiRow
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.Checked += OnCheck;
         GuiElement.Unchecked += OnUncheck;
+        ElementUtilities.addToDict(name.Replace(" ", "_"), this);
     }
 
     public GuiCheckbox(string name, string text, bool _checked, Action<bool> changeAction, double? height = null, double? width = null, int[] textColor = null)
@@ -406,6 +440,7 @@ public class GuiCheckbox : GuiRow
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.Checked += OnCheck;
         GuiElement.Unchecked += OnUncheck;
+        ElementUtilities.addToDict(name.Replace(" ", "_"), this);
     }
 
     private void OnCheck(object sender, RoutedEventArgs e)
@@ -471,6 +506,7 @@ public class GuiUpDown : GuiRow
         GuiElement.Width = width == null ? GuiElement.Width : (double)width;
         actionA = changeAction;
         GuiElement.ValueChanged += OnChange;
+        ElementUtilities.addToDict(name.Replace(" ", "_"), this);
     }
 
     public GuiUpDown(string name, Action<int> changeAction, int? defaultValue = null, int? minimum = null, int? maximum = null, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
@@ -488,6 +524,7 @@ public class GuiUpDown : GuiRow
         GuiElement.Width = width == null ? GuiElement.Width : (double)width;
         actionB = changeAction;
         GuiElement.ValueChanged += OnChange;
+        ElementUtilities.addToDict(name.Replace(" ", "_"), this);
     }
 
     private void OnChange(object sender, RoutedPropertyChangedEventArgs<object> e)

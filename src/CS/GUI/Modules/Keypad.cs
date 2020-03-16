@@ -8,9 +8,18 @@
 
     public static string defaultMessage = "press ";
 
+    private static int Pressed = 0;
+
+    public static void Init()
+    {
+        Pressed = 0;
+    }
+
     private static void OnClick(string name)
     {
+        name.HideElemenet(true);
         name = name.Replace("Button", "");
         TP.Message = TP.Message + name + " ";
+        if (++Pressed == 4) TP.Done();
     }
 }

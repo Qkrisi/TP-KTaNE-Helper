@@ -8,6 +8,7 @@
     public static string defaultMessage = "transmit ";
 
     public static string DoneTextOverride = "TX";
+    public static string CheckboxOverride = "transmit";
 
     private static void OnClick(string name)
     {
