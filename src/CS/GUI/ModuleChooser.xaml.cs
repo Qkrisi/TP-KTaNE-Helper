@@ -13,9 +13,12 @@ namespace TPKtaneHelper.src.CS.GUI
     {
         private Dictionary<string, StackPanel> modulePanels { get; set; } = new Dictionary<string, StackPanel>();
         private Dictionary<string, string> moduleNames { get; set; } = new Dictionary<string, string>();
+
+        private static int Count = 0;
         public ModuleChooser()
         {
             InitializeComponent();
+            Count = 0;
             Application.Current.Dispatcher.Invoke(() =>
             {
                 foreach (KeyValuePair<string, Type> Pair in ModuleTypeDict)
@@ -28,8 +31,8 @@ namespace TPKtaneHelper.src.CS.GUI
                     catch { Panel.Children.Add(new GuiImage(ImageSource.File, "Misc/ModuleNotFound.png").GuiElement); }
 
                     Button BTN = new Button();
-                    moduleNames.Add(Pair.Key.Replace(" ", "_"), Pair.Key);
-                    BTN.Name = Pair.Key.Replace(" ","_");
+                    moduleNames.Add($"Button{++Count}", Pair.Key);
+                    BTN.Name = $"Button{Count}";
                     BTN.Content = Pair.Key;
                     BTN.Click += OnClick;
 

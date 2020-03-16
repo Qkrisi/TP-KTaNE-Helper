@@ -115,6 +115,18 @@ public static class ElementUtilities
             return;
         }
     }
+
+    public static void ShowElemenet(this string eName)
+    {
+        try
+        {
+            elementNames[eName].Show();
+        }
+        catch
+        {
+            return;
+        }
+    }
     #endregion
 }
 
@@ -471,7 +483,7 @@ public enum UpDownFormats
     FixedPoint,
     General,
     Number,
-    Percent
+    //Percent
 }
 public class GuiUpDown : GuiRow
 {
@@ -488,7 +500,7 @@ public class GuiUpDown : GuiRow
         {UpDownFormats.FixedPoint, "F0" },
         {UpDownFormats.General, "G0" },
         {UpDownFormats.Number, "N0" },
-        {UpDownFormats.Percent, "P0" },
+        //{UpDownFormats.Percent, "P0" },
     };
 
     public GuiUpDown(string name, Action<string, int> changeAction, int? defaultValue = null, int? minimum = null, int? maximum = null, UpDownFormats format = UpDownFormats.General, int increment = 1, bool allowSpin = true, string watermark = "", double? height = null, double? width = null)
