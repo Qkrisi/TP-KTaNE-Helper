@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 try
                 {
                     ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], int.Parse(moduleID.Text));
-                    p.Closing += (s, e) => Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
+                    p.Closing += new CancelEventHandler(wClose);
                     TP.moduleID = int.Parse(moduleID.Text);
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
@@ -60,7 +61,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 catch
                 {
                     ModuleWindow p = new ModuleWindow(moduleNames[(sender as Button).Name], 1);
-                    p.Closing += (s, e) => Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
+                    p.Closing += new CancelEventHandler(wClose);
                     TP.moduleID = 1;
                     TP.doneAct = (s) => { p.Close(); Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false); if (s) Main.SendMSG(); };
                     p.Show();
@@ -82,6 +83,12 @@ namespace TPKtaneHelper.src.CS.GUI
                 }
                 Pair.Value.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void wClose(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
+            //new ModuleChooser().Show();
         }
     }
 }

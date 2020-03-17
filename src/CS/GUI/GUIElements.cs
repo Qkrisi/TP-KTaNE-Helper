@@ -2,10 +2,12 @@
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Controls;
+using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using Xceed.Wpf.Toolkit;
+using System.IO;
 using static TPKtaneHelper.src.CS.GUI.ModuleWindow;
 
 public class GuiElement { }
@@ -142,7 +144,7 @@ public class GuiBackgroundImage
     public GuiBackgroundImage(ImageSource imageType, string source)
     {
         var brush = new ImageBrush();
-        brush.ImageSource = new BitmapImage(new Uri(imageType==ImageSource.File ? $@"../../../src/IMG/{source}" : source, imageType==ImageSource.File ? UriKind.Relative : UriKind.Absolute));
+        brush.ImageSource = new BitmapImage(new Uri(imageType==ImageSource.File ? $@"{Directory.GetCurrentDirectory().Replace(@"bin\Debug\netcoreapp3.0","")}src\img\{source}" : source, UriKind.Absolute));
         img = brush;
     }
 }
@@ -173,6 +175,24 @@ public class GuiImage : GuiDroppableRow
     }
 }
 
+public class GuiColor : GuiDroppableRow
+{
+    public Canvas GuiElement { get; private set; }
+
+    public GuiColor(int[] color, double height, double width)
+    {
+        SolidColorBrush Brush = new SolidColorBrush(Color.FromArgb(255, (byte)color[0], (byte)color[1], (byte)color[2]));
+        GuiElement = new Canvas();
+        GuiElement.Height = height;
+        GuiElement.Width = width;
+        Rectangle rectangle = new Rectangle();
+        rectangle.Height = height;
+        rectangle.Width = width;
+        rectangle.Fill = Brush;
+        GuiElement.Children.Add(rectangle);
+    }
+}
+
 public class GuiText : GuiDroppableRow
 {
     public TextBlock GuiElement { get; private set; }
@@ -184,22 +204,23 @@ public class GuiText : GuiDroppableRow
         GuiElement.Foreground = textColor == null ? GuiElement.Foreground : new SolidColorBrush(Color.FromArgb(255, (byte)textColor[0], (byte)textColor[1], (byte)textColor[2]));
         GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
         GuiElement.Height = height == null ? GuiElement.Height : (double)height;
-        GuiElement.Height = height == null ? GuiElement.Height : (double)width;
+        GuiElement.Width = width == null ? GuiElement.Width : (double)width;
     }
 }
 
 public class GuiTextBox : GuiRow
 {
-    public TextBox GuiElement { get; private set; }
+    public WatermarkTextBox GuiElement { get; private set; }
 
     public string Text { get => GuiElement.Text; set { GuiElement.Text = value; } }
 
     private Action<string> changeActA { get; set; }
     private Action<string, string> changeActB { get; set; }
 
-    public GuiTextBox(Action<string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
+    public GuiTextBox(string watermark, Action<string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
     {
-        GuiElement = new TextBox();
+        GuiElement = new WatermarkTextBox();
+        GuiElement.Watermark = watermark;
         changeActA = changeAction;
         GuiElement.Text = text;
         GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
@@ -210,11 +231,12 @@ public class GuiTextBox : GuiRow
         GuiElement.TextChanged += OnChange;
     }
 
-    public GuiTextBox(string name, Action<string, string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
+    public GuiTextBox(string name, string watermark, Action<string, string> changeAction, string text = "", double? fontSize = null, int[] backgroundColor = null, int[] textColor = null, double? height = null, double? width = null)
     {
         name = name.Replace(" ", "_");
-        GuiElement = new TextBox();
+        GuiElement = new WatermarkTextBox();
         GuiElement.Name = name;
+        GuiElement.Watermark = watermark;
         changeActB = changeAction;
         GuiElement.Text = text;
         GuiElement.FontSize = fontSize == null ? GuiElement.FontSize : (double)fontSize;
@@ -329,6 +351,7 @@ public class GuiDropdown : GuiRow
         NoUse = defaultValue;
         ComboBoxItem Default = new ComboBoxItem();
         Default.IsSelected = true;
+        Default.IsEnabled = false;
         Default.Content = defaultValue;
         GuiElement.Items.Add(Default);
         foreach(string value in Values)
@@ -341,7 +364,7 @@ public class GuiDropdown : GuiRow
         ElementUtilities.addToDict(Name.Replace(" ", "_"), this);
     }
 
-    public GuiDropdown(string Name, GuiDroppableRow[] defaultValue, GuiDroppable[][] Values, string[] valueNames, Action<string, string> changeAction)
+    public GuiDropdown(string Name, GuiDroppableRow[] defaultValue, string defaultValueName, GuiDroppable[][] Values, string[] valueNames, Action<string, string> changeAction)
     {
         GuiElement = new ComboBox();
         GuiElement.Name = Name.Replace(" ", "_");
@@ -350,7 +373,7 @@ public class GuiDropdown : GuiRow
         dType = true;
 
         NoUsePanel = new StackPanel();
-        NoUsePanel.Name = Name;
+        NoUsePanel.Name = defaultValueName.Replace(" ","_");
         NoUsePanel.Orientation = Orientation.Horizontal;
         foreach(GuiDroppableRow RowElement in defaultValue)
         {
@@ -370,6 +393,7 @@ public class GuiDropdown : GuiRow
         }
         ComboBoxItem defaultItem = new ComboBoxItem();
         defaultItem.IsSelected = true;
+        defaultItem.IsEnabled = false;
         defaultItem.Content = NoUsePanel;
         GuiElement.Items.Add(defaultItem);
 

@@ -10,6 +10,7 @@ public static class ModuleTypes
         {"Forget Me Not", typeof(ForgetMeNot) },
         {"Keypad", typeof(Keypad) },
         {"Morsematics", typeof(MorseMatics) },
+        {"Murder", typeof(Murder) },
         {"Two Bits", typeof(TwoBits) },
         {"Wires", typeof(Wires) }
     };

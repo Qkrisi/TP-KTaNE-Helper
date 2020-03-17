@@ -13,7 +13,7 @@
         new GuiRow[] {new GuiButton("Button5", "Wire 5", onClick, 20, 80, backgroundColor: new int[] { 255, 255, 255 }) },
         new GuiRow[] {new GuiEmpty(10, 80)},
         new GuiRow[] {new GuiButton("Button6", "Wire 6", onClick, 20, 80, backgroundColor: new int[] { 0, 0, 255 }) },
-        new GuiRow[] {new GuiEmpty(10, 80)}
+        new GuiRow[] {new GuiEmpty(10, 80)},
     };
 
     public static string defaultMessage = "cut ";
@@ -23,4 +23,6 @@
         TP.Message = $"!{TP.moduleID} cut {name.Replace("Button", "")}";
         TP.Done();
     }
+
+    private static void OnChange(string a, string b) { }
 }

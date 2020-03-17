@@ -28,7 +28,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 catch { TP.MessageBox.Text = $"!{ID} "; }
                 MethodInfo doneOverride = ModuleType.GetMethod("DoneOverride", mainFlags);
                 FieldInfo ElementField = ModuleType.GetField("GuiElements", mainFlags);
-                GuiElement[][] Elements = (ElementField.GetValue(null) as GuiElement[][]);
+                GuiElement[][] Elements = (GuiElement[][])ElementField.GetValue(null);
                 foreach (GuiElement[] Row in Elements)
                 {
                     StackPanel Panel = new StackPanel();
@@ -83,7 +83,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 Button DoneBTN = new Button();
                 DoneBTN.Content = TextOverride == null ? "Done" : (string)TextOverride.GetValue(null);
                 if (doneOverride == null) { DoneBTN.Click += (s, e) => TP.Done(); }
-                else { DoneBTN.Click += (s, e) => { doneOverride.Invoke(null, new object?[] { }); TP.Done(); }; }
+                else { DoneBTN.Click += (s, e) => doneOverride.Invoke(null, new object?[] { }); }
                 sPanel.Children.Add(DoneBTN);
                 CheckBox sendBox = new CheckBox();
                 FieldInfo CheckboxOverride = ModuleType.GetField("CheckboxOverride", mainFlags);
