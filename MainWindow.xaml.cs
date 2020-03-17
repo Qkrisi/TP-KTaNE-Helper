@@ -36,8 +36,6 @@ namespace TPKtaneHelper
             Repo
         }
 
-        private static Dictionary<string, GuiElement[][]> elementVars = new Dictionary<string, GuiElement[][]>();
-
         private static State currentState = State.Repo;
 
         private static readonly bool _DeveloperMode = true;
