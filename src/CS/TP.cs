@@ -9,7 +9,7 @@ public static class TP
     public static int moduleID;
     public static TextBox MessageBox;
 
-    public static readonly Action Done = () => { try { doneAct(ModuleWindow.sendAfterDone); closedByDone = true; } catch { } };
+    public static readonly Action Done = () => { try { closedByDone = true; doneAct(ModuleWindow.sendAfterDone); } catch { } };
     public static Action<bool> doneAct;     //Don not use in creators!
 
     public static bool closedByDone = false;

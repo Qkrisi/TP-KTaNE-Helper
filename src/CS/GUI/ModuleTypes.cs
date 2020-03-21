@@ -12,6 +12,7 @@ public static class ModuleTypes
         {"Morsematics", typeof(MorseMatics) },
         {"Murder", typeof(Murder) },
         {"Two Bits", typeof(TwoBits) },
-        {"Wires", typeof(Wires) }
+        {"Wires", typeof(Wires) },
+        {"Wire Sequence", typeof(WireSequence) }
     };
 }

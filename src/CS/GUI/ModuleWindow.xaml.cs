@@ -82,7 +82,7 @@ namespace TPKtaneHelper.src.CS.GUI
                 FieldInfo TextOverride = ModuleType.GetField("DoneTextOverride", mainFlags);
                 Button DoneBTN = new Button();
                 DoneBTN.Content = TextOverride == null ? "Done" : (string)TextOverride.GetValue(null);
-                if (doneOverride == null) { DoneBTN.Click += (s, e) => TP.Done(); }
+                if (doneOverride == null) { DoneBTN.Click += (s, e) =>  TP.Done(); }
                 else { DoneBTN.Click += (s, e) => doneOverride.Invoke(null, new object?[] { }); }
                 sPanel.Children.Add(DoneBTN);
                 CheckBox sendBox = new CheckBox();

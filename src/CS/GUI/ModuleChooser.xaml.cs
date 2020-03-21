@@ -22,6 +22,8 @@ namespace TPKtaneHelper.src.CS.GUI
             Count = 0;
             Application.Current.Dispatcher.Invoke(() =>
             {
+                MainWindow.ComposeButton.IsEnabled = false;
+                this.Closing += (s, e) => MainWindow.ComposeButton.IsEnabled = true;
                 foreach (KeyValuePair<string, Type> Pair in ModuleTypeDict)
                 {
                     StackPanel Panel = new StackPanel();
@@ -68,6 +70,7 @@ namespace TPKtaneHelper.src.CS.GUI
                     Close();
                 }
                 TP.MessageBox.IsReadOnly = true;
+                MainWindow.ComposeButton.IsEnabled = false;
             });
         }
 
@@ -87,8 +90,9 @@ namespace TPKtaneHelper.src.CS.GUI
 
         private void wClose(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() => TP.MessageBox.IsReadOnly = false);
-            //new ModuleChooser().Show();
+            Application.Current.Dispatcher.Invoke(() => { TP.MessageBox.IsReadOnly = false; MainWindow.ComposeButton.IsEnabled = true; });
+            if(!TP.closedByDone) new ModuleChooser().Show();
+            TP.closedByDone = false;
         }
     }
 }

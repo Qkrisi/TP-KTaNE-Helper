@@ -45,6 +45,7 @@ namespace TPKtaneHelper
         private string Channel { get; set; }
 
         private Button streamBTN { get; set; }
+        public static Button ComposeButton { get; set; }
 
         private readonly string fileName = @".\Chat.html";
 
@@ -71,7 +72,8 @@ namespace TPKtaneHelper
             streamBTN.Click += StreamClick;
             StreamerSelect.Click += StreamerSelectClick;
             ProfileSelect.Click += ProfileSelectClick;
-            Composer.Click += ComposeMessage;
+            ComposeButton = Composer;
+            ComposeButton.Click += ComposeMessage;
 
 
             var vlcLibDirectory = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "libvlc", IntPtr.Size == 4 ? "win-x86" : "win-x64"));
