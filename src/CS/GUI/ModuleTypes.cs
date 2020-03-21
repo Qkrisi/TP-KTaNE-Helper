@@ -11,7 +11,11 @@ public static class ModuleTypes
         {"Keypad", typeof(Keypad) },
         {"Morsematics", typeof(MorseMatics) },
         {"Murder", typeof(Murder) },
+        {"Password", typeof(Password) },
+        {"Simon Says", typeof(SimonSays) },
         {"Two Bits", typeof(TwoBits) },
+        {"Venting Gas", typeof(VentingGas) },
+        {"Who’s on First", typeof(WhosOnFirst) },
         {"Wires", typeof(Wires) },
         {"Wire Sequence", typeof(WireSequence) }
     };

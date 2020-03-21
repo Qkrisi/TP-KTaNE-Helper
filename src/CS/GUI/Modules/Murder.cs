@@ -1,9 +1,11 @@
-﻿using System.Windows.Controls;
-
-public static class Murder
+﻿public static class Murder
 {
     public static GuiElement[][] GuiElements = new GuiElement[][]
     {
+        new GuiRow[]
+        {
+            new GuiButton("Cycle", "Cycle", Cycle)
+        },
         new GuiRow[]
         {
             new GuiDropdown
@@ -97,14 +99,20 @@ public static class Murder
     public static string DoneTextOverride = "Accuse";
     public static string CheckboxOverride = "accusation";
 
-    private static GuiDropdown Suspects => GuiElements[0][0] as GuiDropdown;
-    private static GuiDropdown Weapons => GuiElements[0][1] as GuiDropdown;
-    private static GuiDropdown Rooms => GuiElements[0][2] as GuiDropdown;
+    private static GuiDropdown Suspects => GuiElements[1][0] as GuiDropdown;
+    private static GuiDropdown Weapons => GuiElements[1][1] as GuiDropdown;
+    private static GuiDropdown Rooms => GuiElements[1][2] as GuiDropdown;
 
     public static void DoneOverride()
     {
         if (Suspects.Selected == "Suspect" || Weapons.Selected == "Weapon" || Rooms.Selected == "Room") return;
         TP.AppendToMessage($"It was {Suspects.Selected}, with the {Weapons.Selected}, in the {Rooms.Selected}");
+        TP.Done();
+    }
+
+    private static void Cycle()
+    {
+        TP.AppendToMessage("cycle all");
         TP.Done();
     }
 }

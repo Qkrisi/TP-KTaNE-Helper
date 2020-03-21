@@ -8,6 +8,10 @@ public static class NoteOverride
         {"Egg", "EGG :O\nLast number on sticker: " },
         {"Mastermind Cruel", "White: \nMagenta: \nYellow: \nGreen: \nRed: \nBlue: "},
         {"Murder", "Suspects: \nWeapons: \nRoom: " },
+        {"Passwod", "1st column letters: \n2nd column letters: \n3rd column letters: \n4th column letters: \n5th column letters: " },
+        {"Ports", "Ports on bomb: " },
+        {"Simon Says", "Pressed buttons: " },
+        {"Wire Sequence", "Red wire occurrence: \nBlue wire occurrence: \nBlack wire occurrence: " }
     };
 
     public static Dictionary<string, string> UserOverrides = new Dictionary<string, string>();      //Do not modify!

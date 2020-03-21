@@ -28,11 +28,23 @@
         },
         new GuiRow[]
         {
+            new GuiEmpty(5, 10)
+        },
+        new GuiRow[]
+        {
             new GuiCheckbox("DownCheck", "Press down", true, OnCheckBox)
         },
         new GuiRow[]
         {
+            new GuiEmpty(5, 10)
+        },
+        new GuiRow[]
+        {
             new GuiButton("OnlyDown", "Down only", OnlyDown)
+        },
+        new GuiRow[]
+        {
+            new GuiEmpty(5, 10)
         }
     };
 
@@ -41,7 +53,7 @@
     private static GuiUpDown Wire1 => (GuiElements[1] as GuiRow[])[0] as GuiUpDown;
     private static GuiUpDown Wire2 => (GuiElements[2] as GuiRow[])[0] as GuiUpDown;
     private static GuiUpDown Wire3 => (GuiElements[3] as GuiRow[])[0] as GuiUpDown;
-    private static GuiCheckbox pressDown => (GuiElements[6] as GuiRow[])[0] as GuiCheckbox;
+    private static GuiCheckbox pressDown => (GuiElements[7] as GuiRow[])[0] as GuiCheckbox;
     private static int maxWire = 1;
 
     public static string DoneTextOverride = "Down";
