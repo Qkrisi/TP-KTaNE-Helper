@@ -5,8 +5,10 @@ public static class NoteOverride
     public static Dictionary<string, string> BaseOverrides = new Dictionary<string, string>()           //Please keep this dictionary alphabetically sorted! (Except 1st one)
     {
         {"https://ktane.timwi.de", "Notes will show once the repo loads." },
+        {"Batteries", "Batteries: \nBattery holders: " },
         {"Complicated Wires", "Colors: \nLEDs: \nStars: " },
         {"Egg", "EGG :O\nLast number on sticker: " },
+        {"Indicators", "Indicators on bomb: " },
         {"Knob", "First row: \nSecond row: " },
         {"Mastermind Cruel", "White: \nMagenta: \nYellow: \nGreen: \nRed: \nBlue: "},
         {"Maze", "Indicators: \nStart: \nFinish: \nMaze: " },
