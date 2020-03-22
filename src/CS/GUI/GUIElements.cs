@@ -177,19 +177,14 @@ public class GuiImage : GuiDroppableRow
 
 public class GuiColor : GuiDroppableRow
 {
-    public Canvas GuiElement { get; private set; }
+    public Separator GuiElement { get; private set; }
 
     public GuiColor(int[] color, double height, double width)
     {
-        SolidColorBrush Brush = new SolidColorBrush(Color.FromArgb(255, (byte)color[0], (byte)color[1], (byte)color[2]));
-        GuiElement = new Canvas();
+        GuiElement = new Separator();
         GuiElement.Height = height;
         GuiElement.Width = width;
-        Rectangle rectangle = new Rectangle();
-        rectangle.Height = height;
-        rectangle.Width = width;
-        rectangle.Fill = Brush;
-        GuiElement.Children.Add(rectangle);
+        GuiElement.Background = new SolidColorBrush(Color.FromArgb(255, (byte)color[0], (byte)color[1], (byte)color[2]));
     }
 }
 
@@ -341,6 +336,8 @@ public class GuiDropdown : GuiRow
     private bool dType { get; set; } = false;
 
     private StackPanel NoUsePanel { get; set; }
+
+    public void SetDefault() => GuiElement.SelectedIndex = 0;
 
     public GuiDropdown(string Name, string defaultValue, string[] Values, Action<string, string> changeAction)
     {
