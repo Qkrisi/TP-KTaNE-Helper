@@ -6,6 +6,7 @@ public static class NoteOverride
     {
         {"https://ktane.timwi.de", "Notes will show once the repo loads." },
         {"Batteries", "Batteries: \nBattery holders: " },
+        {"Colour Flash", "Flashing sequence: " },
         {"Complicated Wires", "Colors: \nLEDs: \nStars: " },
         {"Egg", "EGG :O\nLast number on sticker: " },
         {"Indicators", "Indicators on bomb: " },

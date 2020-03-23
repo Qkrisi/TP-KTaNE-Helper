@@ -1,4 +1,4 @@
-﻿public static class ComplicatedWires
+﻿public static class NotWiresword
 {
     public static GuiElement[][] GuiElements = new GuiElement[][]
     {
@@ -60,13 +60,8 @@
     public static string defaultMessage = "cut ";
     public static void Init()
     {
-        wireDisplay = 0;
-        Wire2.Hide(false);
-        Wire3.Hide(false);
-        Wire4.Hide(false);
-        Wire5.Hide(false);
-        Wire6.Hide(false);
-        NewButton.Show();
+        wireDisplay = 5;
+        NewButton.Hide(false);
         RemoveButton.Hide(false);
     }
 
@@ -82,7 +77,7 @@
     private static void NewWire()
     {
         Wires[++wireDisplay].Show();
-        if(wireDisplay==5)
+        if (wireDisplay == 5)
         {
             NewButton.Hide(false);
         }
@@ -96,6 +91,6 @@
         {
             RemoveButton.Hide(false);
         }
-       NewButton.Show();
+        NewButton.Show();
     }
 }
