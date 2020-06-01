@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj": {}
+    "E:\\TPKTaNEHelper\\TPKtaneHelper.csproj": {}
   },
   "projects": {
-    "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj": {
+    "E:\\TPKTaNEHelper\\TPKtaneHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj",
+        "projectUniqueName": "E:\\TPKTaNEHelper\\TPKtaneHelper.csproj",
         "projectName": "TPKtaneHelper",
-        "projectPath": "D:\\CSProjects\\TPKtaneHelper\\TPKtaneHelper.csproj",
+        "projectPath": "E:\\TPKTaNEHelper\\TPKtaneHelper.csproj",
         "packagesPath": "C:\\Users\\qkris\\.nuget\\packages\\",
-        "outputPath": "D:\\CSProjects\\TPKtaneHelper\\obj\\",
+        "outputPath": "E:\\TPKTaNEHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -84,6 +84,16 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.0.3, 3.0.3]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -92,7 +102,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
