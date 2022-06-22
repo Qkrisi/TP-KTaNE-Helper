@@ -11,7 +11,7 @@
   <ItemGroup>
     <PackageReference Include="CefSharp.Wpf" Version="98.1.210" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="TwitchLib" Version="3.1.0" />
     <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.8.1" />
     <PackageReference Include="Vlc.DotNet.Core" Version="3.0.0" />
